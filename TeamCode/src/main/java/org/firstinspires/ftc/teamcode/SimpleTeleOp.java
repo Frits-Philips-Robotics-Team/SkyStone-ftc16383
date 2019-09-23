@@ -77,7 +77,17 @@ public class SimpleTeleOp extends OpMode
         if(gamepad1.y) {
             robot.drivetrain.setSpeed(1);
         }
-        
+
+        if(gamepad2.b) {
+            robot.setIntakePower(1);
+        }
+        else if(gamepad2.x) {
+            robot.setIntakePower(-1);
+        }
+        else {
+            robot.setIntakePower(0);
+        }
+
         // Show the elapsed game time
         telemetry.addData("Status", "Run Time: " + runtime.toString());
     }
