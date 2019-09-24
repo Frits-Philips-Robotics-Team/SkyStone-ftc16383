@@ -18,10 +18,18 @@ public class Polar {
         return Math.toDegrees(theta);
     }
 
+    public double getR() {
+        return r;
+    }
+
     static Polar fromXYCoord(double x, double y) {
         double r = Math.hypot(x, y); // length of vector from origin to point (x, y)
         double theta = Math.atan2(y, x); // Angle in RAD from positive X-axis to point (x, y)
         return new Polar(theta, r);
+    }
+
+    public void subtractAngle(double heading) {
+        theta = theta - heading;
     }
 
     public double getX() {

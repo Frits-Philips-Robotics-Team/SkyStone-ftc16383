@@ -37,10 +37,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.NotOpMode.FritsBot;
 
 
-
-@TeleOp(name="Simple_TeleOp", group="Iterative Opmode")
+@TeleOp(name="Field_relative_TeleOp", group="Iterative Opmode")
 //@Disabled
-public class SimpleTeleOp extends OpMode
+public class FieldRelativeTeleOp extends OpMode
 {
     FritsBot robot = new FritsBot();
     ElapsedTime runtime = new ElapsedTime();
@@ -69,7 +68,7 @@ public class SimpleTeleOp extends OpMode
     // Code to run REPEATEDLY after the driver hits PLAY but before they hit STOP
     @Override
     public void loop() {
-        robot.driveSimple(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
+        robot.driveFieldCentric(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
 
         if(gamepad1.a) {
             robot.drivetrain.setSpeed(0.6);
