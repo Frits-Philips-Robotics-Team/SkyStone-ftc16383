@@ -13,12 +13,20 @@ public class FritsBot {
     private Intake fritsIntake = new Intake();
     private BNO055IMU imu;
 
+    // objects for driveHoldAngle
+    private boolean wasRotating;
+    private double rotation;
+
+
     public void init(HardwareMap hwMap) {
         drivetrain.init(hwMap);
         fritsIntake.init(hwMap);
         imu = hwMap.get(BNO055IMU.class, "imu");
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         imu.initialize(parameters);
+
+        wasRotating = false;
+        rotation = getHeadingRadians();
     }
 
     public void driveSimple(double forward, double strafe, double rotate) {
@@ -30,7 +38,34 @@ public class FritsBot {
         double heading = getHeadingRadians();
 
         driveP.subtractAngle(heading);
-        drivetrain.drive(driveP.getY(), driveP. getX(), rotate);
+        drivetrain.drive(driveP.getY(), driveP.getX(), rotate);
+    }
+
+    public void driveHoldAngle(double forward, double strafe, double rotate) {
+        Polar driveP = Polar.fromXYCoord(strafe, forward);
+        double heading = getHeadingRadians();
+
+        double rotateNew;
+        final double adjustmentSpeed = 0.4;
+
+        if(rotate == 0 && !wasRotating) {
+            rotateNew = adjustmentSpeed * (rotation - heading);
+        }
+        else if(wasRotating && rotate == 0) {
+            wasRotating = false;
+            rotation = heading;
+            rotateNew = 0;
+        }
+        else if(!wasRotating) {
+            wasRotating = true;
+            rotateNew = rotate;
+        }
+        else {
+            rotateNew = rotate;
+        }
+
+        driveP.subtractAngle(heading);
+        drivetrain.drive(driveP.getY(), driveP.getX(), rotateNew);
     }
 
     public void setIntakePower(double power) {

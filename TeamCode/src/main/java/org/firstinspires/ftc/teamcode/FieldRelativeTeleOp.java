@@ -68,7 +68,7 @@ public class FieldRelativeTeleOp extends OpMode
     // Code to run REPEATEDLY after the driver hits PLAY but before they hit STOP
     @Override
     public void loop() {
-        robot.driveFieldCentric(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
+        robot.driveHoldAngle(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
 
         if(gamepad1.a) {
             robot.drivetrain.setSpeed(0.6);
