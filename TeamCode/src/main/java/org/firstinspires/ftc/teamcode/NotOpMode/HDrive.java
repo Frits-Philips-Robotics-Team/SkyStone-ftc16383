@@ -18,11 +18,11 @@ public class HDrive {
     private double maxSpeed;
     private double increment;
 
-    double leftPowerCurrent;
-    double rightPowerCurrent;
-    double midPowerCurrent;
+    private double leftPowerCurrent;
+    private double rightPowerCurrent;
+    private double midPowerCurrent;
 
-    public void init(HardwareMap hwMap) {
+    void init(HardwareMap hwMap) {
         leftDrive = hwMap.get(DcMotor.class, "left_drive");
         rightDrive = hwMap.get(DcMotor.class, "right_drive");
         midDrive = hwMap.get(DcMotor.class, "mid_drive");
@@ -53,7 +53,7 @@ public class HDrive {
                 midDrive.getCurrentPosition());
     }
 
-    public void drive(double forwardSpeed, double strafeSpeed, double rotateSpeed) {
+    void drive(double forwardSpeed, double strafeSpeed, double rotateSpeed) {
         double LDriveSpeed = Range.clip(forwardSpeed - rotateSpeed, -maxSpeed, maxSpeed);
         double RDriveSpeed = Range.clip(forwardSpeed + rotateSpeed, -maxSpeed, maxSpeed);
         double midDriveSpeed = Range.clip(strafeSpeed, -maxSpeed, maxSpeed);

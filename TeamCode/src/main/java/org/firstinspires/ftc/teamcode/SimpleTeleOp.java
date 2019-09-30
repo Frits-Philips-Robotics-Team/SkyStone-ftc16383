@@ -88,7 +88,8 @@ public class SimpleTeleOp extends OpMode
             robot.setIntakePower(0);
         }
 
-        // Show the elapsed game time
+        // Show the elapsed game time and drive encoders
+        robot.drivetrain.reportEncoders(telemetry);
         telemetry.addData("Status", "Run Time: " + runtime.toString());
     }
 

@@ -33,13 +33,13 @@ public class FritsBot {
         drivetrain.drive(forward, strafe, rotate);
     }
 
-    public void driveFieldCentric(double forward, double strafe, double rotate) {
-        Polar driveP = Polar.fromXYCoord(strafe, forward);
-        double heading = getHeadingRadians();
-
-        driveP.subtractAngle(heading);
-        drivetrain.drive(driveP.getY(), driveP.getX(), rotate);
-    }
+//    public void driveFieldCentric(double forward, double strafe, double rotate) {
+//        Polar driveP = Polar.fromXYCoord(strafe, forward);
+//        double heading = getHeadingRadians();
+//
+//        driveP.subtractAngle(heading);
+//        drivetrain.drive(driveP.getY(), driveP.getX(), rotate);
+//    }
 
     public void driveHoldAngle(double forward, double strafe, double rotate) {
         Polar driveP = Polar.fromXYCoord(strafe, forward);
@@ -62,6 +62,10 @@ public class FritsBot {
         }
         else {
             rotateNew = rotate;
+        }
+
+        if(Math.abs(rotateNew) < 0.05) {
+            rotateNew = 0;
         }
 
         driveP.subtractAngle(heading);

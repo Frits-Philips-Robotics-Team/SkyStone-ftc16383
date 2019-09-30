@@ -1,26 +1,26 @@
 package org.firstinspires.ftc.teamcode.NotOpMode;
 
-public class Polar {
+class Polar {
 
     private double theta;
     private double r;
 
-    Polar(double theta, double r) {
+    private Polar(double theta, double r) {
         this.theta = theta;
         this.r = r;
     }
 
-    public double getTheta() {
-        return theta;
-    }
-
-    public double getDegrees() {
-        return Math.toDegrees(theta);
-    }
-
-    public double getR() {
-        return r;
-    }
+//    public double getTheta() {
+//        return theta;
+//    }
+//
+//    public double getDegrees() {
+//        return Math.toDegrees(theta);
+//    }
+//
+//    public double getR() {
+//        return r;
+//    }
 
     static Polar fromXYCoord(double x, double y) {
         double r = Math.hypot(x, y); // length of vector from origin to point (x, y)
@@ -28,15 +28,15 @@ public class Polar {
         return new Polar(theta, r);
     }
 
-    public void subtractAngle(double heading) {
+    void subtractAngle(double heading) {
         theta = theta - heading;
     }
 
-    public double getX() {
+    double getX() {
         return r * Math.cos(theta);
     }
 
-    public double getY() {
+    double getY() {
         return r * Math.sin(theta);
     }
 
