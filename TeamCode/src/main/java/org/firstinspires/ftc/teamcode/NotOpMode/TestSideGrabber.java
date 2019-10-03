@@ -30,10 +30,10 @@ public class TestSideGrabber {
     public void moveArm(boolean up) {
         if(armCycleTime.milliseconds() >= 50) {
             if(up) {
-                armAngle += 0.05;
+                armAngle += 0.01;
             }
             else {
-                armAngle -= 0.05;
+                armAngle -= 0.01;
             }
             arm.setPosition(armAngle);
         }
@@ -42,10 +42,10 @@ public class TestSideGrabber {
     public void moveGripper(boolean up) {
         if(gripperCycleTime.milliseconds() >= 50) {
             if(up) {
-                gripperAngle += 0.05;
+                gripperAngle += 0.01;
             }
             else {
-                gripperAngle -= 0.05;
+                gripperAngle -= 0.01;
             }
             gripper.setPosition(gripperAngle);
         }
