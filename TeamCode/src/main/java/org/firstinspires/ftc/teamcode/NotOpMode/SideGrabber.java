@@ -20,11 +20,11 @@ public class SideGrabber {
     }
 
     public void moveGrabber(String armPos, String gripperPos) {
-        final double upValue = 1;
-        final double downValue = 0;
-        final double openValue = 1;
-        final double closedValue = 0.07;
-        final double initialValue = 1;
+        final double upValue = 0.17;
+        final double downValue = 0.85;
+        final double openValue = 0.58;
+        final double closedValue = 0.38;
+        final double initialArmValue = 0.44;
 
         switch (armPos) {
             case "up":      arm.setPosition(upValue);
@@ -37,7 +37,7 @@ public class SideGrabber {
             break;
             case "closed":  gripper.setPosition(closedValue);
             break;
-            case "initial": gripper.setPosition(initialValue);
+            case "initial": gripper.setPosition(initialArmValue);
             break;
         }
     }

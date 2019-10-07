@@ -71,21 +71,21 @@ public class TestGrabberTeleOp extends OpMode
         robot.driveHoldAngle(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
 
         if(gamepad1.a) {
-            robot.grabber.moveArm(false);
+            robot.testGrabber.moveArm(false);
         }
         if(gamepad1.y) {
-            robot.grabber.moveArm(true);
+            robot.testGrabber.moveArm(true);
         }
 
         if(gamepad1.b) {
-            robot.grabber.moveGripper(false);
+            robot.testGrabber.moveGripper(false);
         }
         else if(gamepad1.x) {
-            robot.grabber.moveGripper(true);
+            robot.testGrabber.moveGripper(true);
         }
 
         // Show the elapsed game time and drive encoders
-        robot.grabber.reportPositions(telemetry);
+        robot.testGrabber.reportPositions(telemetry);
         telemetry.addData("Status", "Run Time: " + runtime.toString());
     }
 
