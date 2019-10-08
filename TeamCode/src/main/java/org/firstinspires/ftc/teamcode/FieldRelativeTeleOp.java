@@ -41,8 +41,8 @@ import org.firstinspires.ftc.teamcode.NotOpMode.FritsBot;
 //@Disabled
 public class FieldRelativeTeleOp extends OpMode
 {
-    FritsBot robot = new FritsBot();
-    ElapsedTime runtime = new ElapsedTime();
+    private FritsBot robot = new FritsBot();
+    private ElapsedTime runtime = new ElapsedTime();
 
     // Code to run ONCE when the driver hits INIT
     @Override
@@ -62,6 +62,8 @@ public class FieldRelativeTeleOp extends OpMode
     // Code to run ONCE when the driver hits PLAY
     @Override
     public void start() {
+        robot.sideGrabber.moveGrabber("up", "open");
+
         runtime.reset();
     }
 
@@ -85,6 +87,20 @@ public class FieldRelativeTeleOp extends OpMode
         }
         else {
             robot.setIntakePower(0);
+        }
+
+        if(gamepad2.dpad_up) {
+            robot.sideGrabber.moveGrabber("up", "");
+        }
+        else if(gamepad2.dpad_down) {
+            robot.sideGrabber.moveGrabber("down", "");
+        }
+
+        if(gamepad2.dpad_left) {
+            robot.sideGrabber.moveGrabber("", "open");
+        }
+        else if(gamepad2.dpad_right) {
+            robot.sideGrabber.moveGrabber("", "closed");
         }
 
         // Show the elapsed game time
