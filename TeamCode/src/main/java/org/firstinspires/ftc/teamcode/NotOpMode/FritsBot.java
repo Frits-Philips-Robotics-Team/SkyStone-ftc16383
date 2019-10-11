@@ -13,6 +13,7 @@ public class FritsBot {
     public HDrive drivetrain = new HDrive();
     public TestSideGrabber testGrabber = new TestSideGrabber();
     public SideGrabber sideGrabber = new SideGrabber();
+    public LiftGrab liftGrab = new LiftGrab();
     private Intake fritsIntake = new Intake();
     private BNO055IMU imu;
 
@@ -27,6 +28,7 @@ public class FritsBot {
         drivetrain.init(hwMap);
         testGrabber.init(hwMap);
         sideGrabber.init(hwMap);
+        liftGrab.init(hwMap);
         fritsIntake.init(hwMap);
         imu = hwMap.get(BNO055IMU.class, "imu");
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
