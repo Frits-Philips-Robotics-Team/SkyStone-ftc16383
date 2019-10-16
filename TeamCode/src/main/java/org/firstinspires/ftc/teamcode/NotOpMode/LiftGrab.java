@@ -35,17 +35,23 @@ public class LiftGrab {
         final double initialGripperValue = 0.17;
 
         switch (armPos) {
-            case "in": rotateArm.setPosition(inValue);
-            break;
-            case "out":rotateArm.setPosition(outValue);
+            case "in":
+                rotateArm.setPosition(inValue);
+                break;
+            case "out":
+                rotateArm.setPosition(outValue);
+                break;
         }
         switch (gripperPos) {
-            case "open":    gripper.setPosition(openValue);
-            break;
-            case "closed":  gripper.setPosition(closedValue);
-            break;
-            case "initial": gripper.setPosition(initialGripperValue);
-            break;
+            case "open":
+                gripper.setPosition(openValue);
+                break;
+            case "closed":
+                gripper.setPosition(closedValue);
+                break;
+            case "initial":
+                gripper.setPosition(initialGripperValue);
+                break;
             default: break;
         }
     }
