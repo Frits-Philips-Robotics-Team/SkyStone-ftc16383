@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.NotOpMode;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
+//import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
@@ -13,13 +13,13 @@ public class FritsBot {
     public HDrive drivetrain = new HDrive();
     public TestSideGrabber testGrabber = new TestSideGrabber();
     public SideGrabber sideGrabber = new SideGrabber();
-    public LiftGrab liftGrab = new LiftGrab();
+    private LiftGrab liftGrab = new LiftGrab();
     private Intake fritsIntake = new Intake();
     private BNO055IMU imu;
+    private PD_controller rotationPD = new PD_controller();
 
     // objects for driveHoldAngle
     private boolean wasRotating;
-    private double rotation;
 
     private double prevAngle;
     private double rotateOffset;
@@ -35,13 +35,13 @@ public class FritsBot {
         imu.initialize(parameters);
 
         wasRotating = false;
-        rotation = getHeadingRadians();
+        rotationPD.target = getHeadingRadians();
 
         prevAngle = 0;
         rotateOffset = 0;
     }
 
-    public void driveSimple(double forward, double strafe, double rotate) {
+    public void driveSimple (double forward, double strafe, double rotate) {
         drivetrain.drive(forward, strafe, rotate);
     }
 
@@ -53,35 +53,25 @@ public class FritsBot {
 //        drivetrain.drive(driveP.getY(), driveP.getX(), rotate);
 //    }
 
-    public void driveHoldAngle(double forward, double strafe, double rotate) {
-        Polar driveP = Polar.fromXYCoord(strafe, forward);
+    public void driveHoldAngle (double forward, double strafe, double rotate) {
         double heading = getHeadingRadians();
-
-        double rotateNew;
-        final double adjustmentSpeed = 0.4;
+        Polar driveP = Polar.fromXYCoord(strafe, forward);
 
         if (rotate == 0 && !wasRotating) {
-            rotateNew = adjustmentSpeed * (rotation - heading);
+            rotationPD.current = heading;
         } else if (wasRotating && rotate == 0) {
             wasRotating = false;
-            rotation = heading;
-            rotateNew = 0;
+            rotationPD.target = heading;
         } else if (!wasRotating) {
             wasRotating = true;
-            rotateNew = rotate;
-        } else {
-            rotateNew = rotate;
-        }
-
-        if (Math.abs(rotateNew) < 0.02) {
-            rotateNew = 0;
         }
 
         driveP.subtractAngle(heading);
-        drivetrain.drive(driveP.getY(), driveP.getX(), rotateNew);
+
+        drivetrain.drive(driveP.getY(), driveP.getX(), rotationPD.getOutput());
     }
 
-    public void setIntakePower(double power) {
+    public void setIntakePower (double power) {
         fritsIntake.setIntakePower(power);
     }
 
@@ -100,7 +90,7 @@ public class FritsBot {
         return -angles.firstAngle - rotateOffset;
     }
 
-    public void reportHeadingRadians(Telemetry telemetry) {
-        telemetry.addData("heading:", getHeadingRadians());
-    }
+//    public void reportHeadingRadians(Telemetry telemetry) {
+//        telemetry.addData("heading:", getHeadingRadians());
+//    }
 }
