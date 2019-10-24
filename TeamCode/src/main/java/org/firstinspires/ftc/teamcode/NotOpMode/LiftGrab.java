@@ -10,17 +10,21 @@ public class LiftGrab {
 
     private Servo rotateArm;
     private Servo gripper;
-    private DcMotor lift;
+    private DcMotor liftOne;
+    private DcMotor liftTwo;
 
     private ElapsedTime cycleTime = new ElapsedTime();
 
     public void init(HardwareMap hwMap) {
         rotateArm = hwMap.get(Servo.class, "lift_arm");
         gripper = hwMap.get(Servo.class, "lift_gripper");
-        lift = hwMap.get(DcMotor.class, "lift");
+        liftOne = hwMap.get(DcMotor.class, "liftOne");
+        liftTwo = hwMap.get(DcMotor.class, "liftTwo");
 
-        lift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        lift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        liftOne.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        liftOne.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        liftTwo.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        liftTwo.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         //moveGrabber("in", "initial");
         cycleTime.reset();
@@ -35,22 +39,28 @@ public class LiftGrab {
         final double initialGripperValue = 0.17;
 
         switch (armPos) {
-            case "in": rotateArm.setPosition(inValue);
-            break;
-            case "out":rotateArm.setPosition(outValue);
+            case "in":
+                rotateArm.setPosition(inValue);
+                break;
+            case "out":
+                rotateArm.setPosition(outValue);
+                break;
         }
         switch (gripperPos) {
-            case "open":    gripper.setPosition(openValue);
-            break;
-            case "closed":  gripper.setPosition(closedValue);
-            break;
-            case "initial": gripper.setPosition(initialGripperValue);
-            break;
-            default: break;
+            case "open":
+                gripper.setPosition(openValue);
+                break;
+            case "closed":
+                gripper.setPosition(closedValue);
+                break;
+            case "initial":
+                gripper.setPosition(initialGripperValue);
+                break;
         }
     }
 
     public void setLiftPower(double liftPower) {
-        lift.setPower(liftPower);
+        liftOne.setPower(liftPower);
+        liftTwo.setPower(liftPower);
     }
 }

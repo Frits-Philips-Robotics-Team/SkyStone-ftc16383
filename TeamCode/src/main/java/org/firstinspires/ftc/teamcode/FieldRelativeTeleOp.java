@@ -72,6 +72,8 @@ public class FieldRelativeTeleOp extends OpMode
     public void loop() {
         robot.driveHoldAngle(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
 
+        robot.liftGrab.setLiftPower(gamepad2.left_stick_y);
+
         if(gamepad1.a) {
             robot.drivetrain.setSpeed(0.6);
         }
@@ -79,10 +81,10 @@ public class FieldRelativeTeleOp extends OpMode
             robot.drivetrain.setSpeed(1);
         }
 
-        if(gamepad1.b) {
+        if(gamepad2.b) {
             robot.setIntakePower(1);
         }
-        else if(gamepad1.x) {
+        else if(gamepad2.x) {
             robot.setIntakePower(-1);
         }
         else {
@@ -90,18 +92,19 @@ public class FieldRelativeTeleOp extends OpMode
         }
 
         if(gamepad2.dpad_up) {
-            robot.sideGrabber.moveGrabber("up", "");
+            robot.liftGrab.moveGrabber("out", "");
         }
         else if(gamepad2.dpad_down) {
-            robot.sideGrabber.moveGrabber("down", "");
+            robot.liftGrab.moveGrabber("in", "");
         }
 
         if(gamepad2.dpad_left) {
-            robot.sideGrabber.moveGrabber("", "open");
+            robot.liftGrab.moveGrabber("", "open");
         }
         else if(gamepad2.dpad_right) {
-            robot.sideGrabber.moveGrabber("", "closed");
+            robot.liftGrab.moveGrabber("", "closed");
         }
+
 
         // Show the elapsed game time
         telemetry.addData("Status", "Run Time: " + runtime.toString());
