@@ -31,12 +31,11 @@ public class LiftGrab {
     }
 
     public void moveGrabber(String armPos, String gripperPos) {
-        final double inValue = 1;
+        final double inValue = 0.74;
         final double outValue = 0;
 
-        final double openValue = 0.58;
-        final double closedValue = 0.38;
-        final double initialGripperValue = 0.17;
+        final double openValue = 0.34;
+        final double closedValue = 0;
 
         switch (armPos) {
             case "in":
@@ -53,14 +52,11 @@ public class LiftGrab {
             case "closed":
                 gripper.setPosition(closedValue);
                 break;
-            case "initial":
-                gripper.setPosition(initialGripperValue);
-                break;
         }
     }
 
     public void setLiftPower(double liftPower) {
-        liftOne.setPower(liftPower);
-        liftTwo.setPower(liftPower);
+        liftOne.setPower(-liftPower);
+        liftTwo.setPower(-liftPower);
     }
 }
