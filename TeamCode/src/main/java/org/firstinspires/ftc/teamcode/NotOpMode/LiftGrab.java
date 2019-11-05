@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.NotOpMode;
 
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -13,7 +14,7 @@ public class LiftGrab {
     private DcMotor liftOne;
     private DcMotor liftTwo;
 
-    private ElapsedTime cycleTime = new ElapsedTime();
+    private ElapsedTime encoderTime = new ElapsedTime();
 
     public void init(HardwareMap hwMap) {
         rotateArm = hwMap.get(Servo.class, "lift_arm");
@@ -27,7 +28,6 @@ public class LiftGrab {
         liftTwo.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         //moveGrabber("in", "initial");
-        cycleTime.reset();
     }
 
     public void moveGrabber(String armPos, String gripperPos) {
@@ -58,5 +58,32 @@ public class LiftGrab {
     public void setLiftPower(double liftPower) {
         liftOne.setPower(-liftPower);
         liftTwo.setPower(-liftPower);
+    }
+
+    public void encoderLift(double speed, double cm, double TimeoutS, LinearOpMode opmode) {
+
+        final double LIFT_COUNTS_PER_CM = 4.535; // (288 / 1.333...) / (15 * 0.635 cm * 5)
+        int NewLiftTarget;
+
+        if(opmode.opModeIsActive()) {
+            NewLiftTarget = liftOne.getCurrentPosition() + (int) (cm * LIFT_COUNTS_PER_CM);
+            liftOne.setTargetPosition(NewLiftTarget);
+            liftTwo.setTargetPosition(NewLiftTarget);
+
+            liftOne.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            liftTwo.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            encoderTime.reset();
+            liftOne.setPower(Math.abs(speed));
+            liftTwo.setPower(Math.abs(speed));
+
+            while(opmode.opModeIsActive() && (encoderTime.seconds() < TimeoutS) && liftOne.isBusy());
+
+            liftOne.setPower(0);
+            liftTwo.setPower(0);
+
+            liftOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            liftTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
     }
 }

@@ -62,8 +62,6 @@ public class FieldRelativeTeleOp extends OpMode
     // Code to run ONCE when the driver hits PLAY
     @Override
     public void start() {
-        robot.sideGrabber.moveGrabber("up", "open");
-
         runtime.reset();
     }
 
@@ -104,7 +102,6 @@ public class FieldRelativeTeleOp extends OpMode
         else if(gamepad2.dpad_right) {
             robot.liftGrab.moveGrabber("", "closed");
         }
-
 
         // Show the elapsed game time
         telemetry.addData("Status", "Run Time: " + runtime.toString());

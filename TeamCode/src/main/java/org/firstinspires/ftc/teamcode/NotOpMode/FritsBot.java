@@ -10,8 +10,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 public class FritsBot {
+
     public HDrive drivetrain = new HDrive();
-    public TestSideGrabber testGrabber = new TestSideGrabber();
+    //public TestSideGrabber testGrabber = new TestSideGrabber();
     public SideGrabber sideGrabber = new SideGrabber();
     public LiftGrab liftGrab = new LiftGrab();
     private Intake fritsIntake = new Intake();
@@ -26,7 +27,7 @@ public class FritsBot {
 
     public void init(HardwareMap hwMap) {
         drivetrain.init(hwMap);
-        testGrabber.init(hwMap);
+        //testGrabber.init(hwMap);
         sideGrabber.init(hwMap);
         liftGrab.init(hwMap);
         fritsIntake.init(hwMap);
