@@ -146,7 +146,9 @@ public class HDrive {
         rightDrive.setPower(Math.abs(rightSpeed));
         midDrive.setPower(Math.abs(midSpeed));
 
-        while(opmode.opModeIsActive() && (autonTime.seconds() < TimeoutS) && (leftDrive.isBusy() || rightDrive.isBusy()));
+        while(opmode.opModeIsActive() && (autonTime.seconds() < TimeoutS) && (leftDrive.isBusy() || rightDrive.isBusy() || midDrive.isBusy())) {
+            // wait until motors are done
+        }
 
         // Stop all motion;
         leftDrive.setPower(0);

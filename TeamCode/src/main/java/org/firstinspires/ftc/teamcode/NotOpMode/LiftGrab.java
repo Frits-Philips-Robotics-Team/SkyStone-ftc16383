@@ -56,8 +56,8 @@ public class LiftGrab {
     }
 
     public void setLiftPower(double liftPower) {
-        liftOne.setPower(-liftPower);
-        liftTwo.setPower(-liftPower);
+        liftOne.setPower(liftPower);
+        liftTwo.setPower(liftPower);
     }
 
     public void encoderLift(double speed, double cm, double TimeoutS, LinearOpMode opmode) {
