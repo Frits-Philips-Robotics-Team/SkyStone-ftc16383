@@ -80,7 +80,7 @@ public class AutonRedBuildZone extends LinearOpMode {
         robot.liftGrab.setLiftPower(-0.2);
         sleep(1000);
 
-        robot.drivetrain.encoderDrive(0.15, 0.15, 0.6, 5, 5, -150, 4, this);
+        robot.drivetrain.encoderDrive(0.15, 0.15, 0.6, -5, -5, -150, 4, this);
         robot.liftGrab.setLiftPower(0);
         robot.sideGrabber.moveGrabber("down", "");
     }
