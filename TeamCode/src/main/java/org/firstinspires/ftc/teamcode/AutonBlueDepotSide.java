@@ -46,8 +46,8 @@ import org.firstinspires.ftc.teamcode.NotOpMode.FritsBot;
 import java.util.List;
 
 
-@Autonomous(name="RedDepotSide", group="red")
-public class AutonRedDepotSide extends LinearOpMode {
+@Autonomous(name="BlueDepotSide", group="blue")
+public class AutonBlueDepotSide extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "Skystone.tflite";
     private static final String LABEL_FIRST_ELEMENT = "Stone";
     private static final String LABEL_SECOND_ELEMENT = "Skystone";

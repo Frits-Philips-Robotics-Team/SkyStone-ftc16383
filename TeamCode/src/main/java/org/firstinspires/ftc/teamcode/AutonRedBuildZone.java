@@ -41,7 +41,7 @@ import org.firstinspires.ftc.teamcode.NotOpMode.FritsBot;
 
 
 
-@Autonomous(name="AutonRedBuildZone", group="red_build_site")
+@Autonomous(name="RedBuildZone", group="red")
 public class AutonRedBuildZone extends LinearOpMode {
 
     private FritsBot robot = new FritsBot();
@@ -54,23 +54,22 @@ public class AutonRedBuildZone extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        robot.drivetrain.encoderDrive(0.6, 0.6, 0.56, -75, -75, 60, 2, this);
+        robot.liftGrab.setLiftPower(0.6);
 
-        robot.liftGrab.setLiftPower(0.8);
-        sleep(1000) ;
+        robot.drivetrain.encoderDrive(0.6, 0.6, 0.56, -72, -72, 54, 1.9, this);
+
         robot.liftGrab.setLiftPower(0);
 
         robot.liftGrab.moveGrabber("out", "open");
         sleep(500);
 
-        robot.liftGrab.setLiftPower(-0.25);
+        robot.liftGrab.setLiftPower(-0.2);
         sleep(2200);
+
+        robot.drivetrain.encoderDrive(0.7, 0.7, 0.0, 83, 83, 0, 2, this);
         robot.liftGrab.setLiftPower(0);
-        sleep(500);
 
-        robot.drivetrain.encoderDrive(0.6, 0.6, 0.0, 83, 83, 0, 2, this);
-
-        robot.liftGrab.setLiftPower(0.8);
+        robot.liftGrab.setLiftPower(0.9);
         sleep(900);
         robot.liftGrab.setLiftPower(0);
 
@@ -80,7 +79,8 @@ public class AutonRedBuildZone extends LinearOpMode {
         robot.liftGrab.setLiftPower(-0.2);
         sleep(1000);
 
-        robot.drivetrain.encoderDrive(0.15, 0.15, 0.6, -5, -5, -150, 4, this);
+        robot.drivetrain.encoderDrive(0.5, 0.5, 0, -5, -5, 0, 1, this);
+        robot.drivetrain.encoderDrive(0, 0, 0.7, 0, 0, -150, 4, this);
         robot.liftGrab.setLiftPower(0);
         robot.sideGrabber.moveGrabber("down", "");
     }
