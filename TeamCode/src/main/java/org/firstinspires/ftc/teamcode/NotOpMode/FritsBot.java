@@ -21,6 +21,7 @@ public class FritsBot {
     // objects for driveHoldAngle
     private boolean wasRotating;
     private double rotation;
+    private double holdAngleOffset;
 
     private double prevAngle;
     private double rotateOffset;
@@ -40,6 +41,7 @@ public class FritsBot {
 
         prevAngle = 0;
         rotateOffset = 0;
+        holdAngleOffset = 0;
     }
 
     public void driveSimple(double forward, double strafe, double rotate) {
@@ -78,8 +80,12 @@ public class FritsBot {
             rotateNew = 0;
         }
 
-        driveP.subtractAngle(heading);
+        driveP.subtractAngle(heading - holdAngleOffset);
         drivetrain.drive(driveP.getY(), driveP.getX(), rotateNew);
+    }
+
+    public void resetDriveAngle() {
+        holdAngleOffset = getHeadingRadians();
     }
 
     public void setIntakePower(double power) {

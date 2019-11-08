@@ -70,10 +70,14 @@ public class FieldRelativeTeleOp extends OpMode
     public void loop() {
         robot.driveHoldAngle(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
 
+        if(gamepad1.right_bumper) {
+            robot.resetDriveAngle();
+        }
+
         robot.liftGrab.setLiftPower(-gamepad2.left_stick_y);
 
         if(gamepad1.a) {
-            robot.drivetrain.setSpeed(0.6);
+            robot.drivetrain.setSpeed(0.75);
         }
         if(gamepad1.y) {
             robot.drivetrain.setSpeed(1);
