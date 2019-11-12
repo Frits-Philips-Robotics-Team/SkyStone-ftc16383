@@ -15,19 +15,22 @@ public class SideGrabber {
         arm = hwMap.get(Servo.class, "side_arm");
         gripper = hwMap.get(Servo.class, "side_gripper");
 
-        moveGrabber("up", "initial");
+        moveGrabber("upEmpty", "initial");
         cycleTime.reset();
     }
 
     public void moveGrabber(String armPos, String gripperPos) {
-        final double upValue = 0.44;
-        final double downValue = 0.85;
-        final double openValue = 0.58;
-        final double closedValue = 0.38;
-        final double initialGripperValue = 0.17;
+        final double upBlockValue = 0.38;
+        final double upEmptyValue = 0.41;
+        final double downValue = 0.84;
+        final double openValue = 0.34;
+        final double closedValue = 0.8;
+        final double initialGripperValue = 0.91;
 
         switch (armPos) {
-            case "up":      arm.setPosition(upValue);
+            case "upBlock": arm.setPosition(upBlockValue);
+            break;
+            case "upEmpty": arm.setPosition(upEmptyValue);
             break;
             case "down":    arm.setPosition(downValue);
             break;

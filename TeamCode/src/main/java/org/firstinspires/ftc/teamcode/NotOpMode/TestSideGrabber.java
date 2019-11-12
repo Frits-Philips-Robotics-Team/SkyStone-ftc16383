@@ -17,8 +17,8 @@ public class TestSideGrabber {
     private double gripperAngle;
 
     public void init(HardwareMap hwMap) {
-        arm = hwMap.get(Servo.class, "lift_arm");
-        gripper = hwMap.get(Servo.class, "lift_gripper");
+        arm = hwMap.get(Servo.class, "side_arm");
+        gripper = hwMap.get(Servo.class, "side_gripper");
 
         armAngle = 0.5;
         gripperAngle = 0.5;

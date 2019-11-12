@@ -107,6 +107,13 @@ public class FieldRelativeTeleOp extends OpMode
             robot.liftGrab.moveGrabber("", "closed");
         }
 
+        if(gamepad2.left_bumper) {
+            robot.sideGrabber.moveGrabber("upEmpty", "initial");
+        }
+        else if(gamepad2.right_bumper) {
+            robot.sideGrabber.moveGrabber("down", "");
+        }
+
         // Show the elapsed game time
         telemetry.addData("Status", "Run Time: " + runtime.toString());
     }
