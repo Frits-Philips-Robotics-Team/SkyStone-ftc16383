@@ -86,7 +86,7 @@ public class AutonBlueDepotSide extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        robot.sideGrabber.moveGrabber("up", "open");
+        robot.sideGrabber.moveGrabber("upBlock", "open");
         robot.drivetrain.encoderDrive(0.5, 0.54, 0.75, 64, 65, -71, 5, this);
 
         if(opModeIsActive()) {
@@ -138,7 +138,7 @@ public class AutonBlueDepotSide extends LinearOpMode {
             sleep(1000);
             robot.sideGrabber.moveGrabber("down", "closed");
             sleep(300);
-            robot.sideGrabber.moveGrabber("up", "closed");
+            robot.sideGrabber.moveGrabber("upBlock", "closed");
             robot.drivetrain.encoderDrive(0, 0, 0.7, 0, 0, 20, 3, this);
             //robot.drivetrain.encoderDrive(0.6, 0.6, 0, -15, -15, 0, 4, this);
             //robot.drivetrain.encoderDrive(0.6, 0.6, 0, 36, -36, 0, 4, this);
@@ -146,7 +146,7 @@ public class AutonBlueDepotSide extends LinearOpMode {
             robot.drivetrain.encoderDrive(0.6, 0.6, 0.5, -225, -225, -20, 4, this);
             robot.sideGrabber.moveGrabber("down", "open");
             sleep(300);
-            robot.sideGrabber.moveGrabber("up", "open");
+            robot.sideGrabber.moveGrabber("upEmpty", "open");
             robot.drivetrain.encoderDrive(0.6, 0.6, 0, 50, 50, 0, 4, this);
 
 
@@ -158,7 +158,7 @@ public class AutonBlueDepotSide extends LinearOpMode {
             sleep(1000);
             robot.sideGrabber.moveGrabber("down", "closed");
             sleep(300);
-            robot.sideGrabber.moveGrabber("up", "closed");
+            robot.sideGrabber.moveGrabber("upBlock", "closed");
             robot.drivetrain.encoderDrive(0, 0, 0.5, 0, 0, 20, 3, this);
             //robot.drivetrain.encoderDrive(0.6, 0.6, 0, -15, -15, 0, 4, this);
             //robot.drivetrain.encoderDrive(0.6, 0.6, 0, 36, -36, 0, 4, this);
@@ -166,7 +166,7 @@ public class AutonBlueDepotSide extends LinearOpMode {
             robot.drivetrain.encoderDrive(0.6, 0.6, 0.5, -200, -200, -20, 4, this);
             robot.sideGrabber.moveGrabber("down", "open");
             sleep(300);
-            robot.sideGrabber.moveGrabber("up", "open");
+            robot.sideGrabber.moveGrabber("upEmpty", "open");
             robot.drivetrain.encoderDrive(0.6, 0.6, 0, 50, 50, 0, 4, this);
 
 
@@ -179,7 +179,7 @@ public class AutonBlueDepotSide extends LinearOpMode {
             sleep(1000);
             robot.sideGrabber.moveGrabber("down", "closed");
             sleep(300);
-            robot.sideGrabber.moveGrabber("up", "closed");
+            robot.sideGrabber.moveGrabber("upBlock", "closed");
             robot.drivetrain.encoderDrive(0, 0, 0.5, 0, 0, 20, 3, this);
             //robot.drivetrain.encoderDrive(0.6, 0.6, 0, -15, -15, 0, 4, this);
             //robot.drivetrain.encoderDrive(0.6, 0.6, 0, 36, -36, 0, 4, this);
@@ -187,7 +187,7 @@ public class AutonBlueDepotSide extends LinearOpMode {
             robot.drivetrain.encoderDrive(0.6, 0.6, 0.5, -180, -180, -20, 4, this);
             robot.sideGrabber.moveGrabber("down", "open");
             sleep(300);
-            robot.sideGrabber.moveGrabber("up", "open");
+            robot.sideGrabber.moveGrabber("upEmpty", "open");
             robot.drivetrain.encoderDrive(0.6, 0.6, 0, 50, 50, 0, 4, this);
 
         }

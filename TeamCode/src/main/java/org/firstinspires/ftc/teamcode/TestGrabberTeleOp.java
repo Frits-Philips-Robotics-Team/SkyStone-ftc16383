@@ -39,7 +39,7 @@
 //
 //
 //@TeleOp(name="Test_grabber", group="Iterative Opmode")
-//@Disabled
+////@Disabled
 //public class TestGrabberTeleOp extends OpMode
 //{
 //    private FritsBot robot = new FritsBot();
