@@ -48,35 +48,16 @@ public class AutonBlueBuildZone extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        robot.liftGrab.setLiftPower(0.6);
-
-        robot.drivetrain.encoderDrive(0.61, 0.6, 0.56, -73, -68, -65, 2, this);
-
-        robot.liftGrab.setLiftPower(0);
-
-        robot.liftGrab.moveGrabber("out", "open");
-        sleep(500);
-
-        robot.liftGrab.setLiftPower(-0.2);
-        sleep(2200);
-
-        robot.drivetrain.encoderDrive(0.45, 0.45, 0.0, 77, 77, 0, 4, this);
-        robot.liftGrab.setLiftPower(0);
-
-        robot.liftGrab.setLiftPower(0.9);
-        sleep(900);
-        robot.liftGrab.setLiftPower(0);
-
-        robot.liftGrab.moveGrabber("in", "open");
-        sleep(500);
-
-        robot.liftGrab.setLiftPower(-0.2);
-        sleep(1000);
-
-        robot.drivetrain.encoderDrive(0.5, 0.5, 0, -5, -5, 0, 1, this);
-        robot.drivetrain.encoderDrive(0, 0, 0.7, 0, 0, 170, 5, this);
-        robot.liftGrab.setLiftPower(0);
+        robot.drivetrain.encoderDrive(0.72, 0.7, 0.6, 83, 80, 40, 2, this);
+        robot.drivetrain.encoderDrive(0.5, 0.5, 0, 7, 7, 0, 1.5, this);
+        robot.foundationServo.moveUp(false);
+        sleep(300);
+        robot.drivetrain.encoderDrive(0.72, 0.7, 0, -90, -87, 0, 2.5, this);
+        robot.foundationServo.moveUp(true);
+        robot.drivetrain.encoderDrive(0.55, 0.55, 0, 5, 5, 0, 1.5, this);
+        robot.drivetrain.encoderDrive(0.55, 0.55, 0, -4, -4, 0, 1.5, this);
+        robot.drivetrain.encoderDrive(0, 0, 0.5, 0, 0, -140, 7, this);
         robot.sideGrabber.moveGrabber("down", "");
-        robot.drivetrain.encoderDrive(0.6, 0.6, 0, 20, 20, 0, 1, this);
+        sleep(300);
     }
 }

@@ -9,14 +9,12 @@ public class SideGrabber {
 
     private Servo arm;
     private Servo gripper;
-    private ElapsedTime cycleTime = new ElapsedTime();
 
     public void init(HardwareMap hwMap) {
         arm = hwMap.get(Servo.class, "side_arm");
         gripper = hwMap.get(Servo.class, "side_gripper");
 
         moveGrabber("upEmpty", "initial");
-        cycleTime.reset();
     }
 
     public void moveGrabber(String armPos, String gripperPos) {

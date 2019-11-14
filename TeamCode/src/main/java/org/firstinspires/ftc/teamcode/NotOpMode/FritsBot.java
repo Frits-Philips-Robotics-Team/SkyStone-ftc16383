@@ -12,9 +12,10 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 public class FritsBot {
 
     public HDrive drivetrain = new HDrive();
-    //public TestSideGrabber testGrabber = new TestSideGrabber();
+    //public servoTester servoTest = new servoTester();
     public SideGrabber sideGrabber = new SideGrabber();
     public LiftGrab liftGrab = new LiftGrab();
+    public FoundationServo foundationServo = new FoundationServo();
     private Intake fritsIntake = new Intake();
     private BNO055IMU imu;
 
@@ -28,9 +29,10 @@ public class FritsBot {
 
     public void init(HardwareMap hwMap) {
         drivetrain.init(hwMap);
-        //testGrabber.init(hwMap);
+        //servoTest.init(hwMap);
         sideGrabber.init(hwMap);
         liftGrab.init(hwMap);
+        foundationServo.init(hwMap);
         fritsIntake.init(hwMap);
         imu = hwMap.get(BNO055IMU.class, "imu");
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();

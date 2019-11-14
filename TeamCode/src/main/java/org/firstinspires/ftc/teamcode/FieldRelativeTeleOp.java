@@ -93,6 +93,13 @@ public class FieldRelativeTeleOp extends OpMode
             robot.setIntakePower(0);
         }
 
+        if(gamepad1.dpad_left) {
+            robot.foundationServo.moveUp(false);
+        }
+        else if(gamepad1.dpad_right) {
+            robot.foundationServo.moveUp(true);
+        }
+
         if(gamepad2.dpad_up) {
             robot.liftGrab.moveGrabber("out", "");
         }

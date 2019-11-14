@@ -26,8 +26,6 @@ public class LiftGrab {
         liftOne.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         liftTwo.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         liftTwo.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-        //moveGrabber("in", "initial");
     }
 
     public void moveGrabber(String armPos, String gripperPos) {
