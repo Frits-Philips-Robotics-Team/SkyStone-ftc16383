@@ -134,28 +134,29 @@ public class AutonRedDepotSide extends LinearOpMode {
         telemetry.update();
 
         if(skystonePos.equals("left")) {
-            robot.drivetrain.encoderDrive(0, 0, 0.6, 0, 0, -30, 1.5, this);
             robot.sideGrabber.moveGrabber("down", "open");
-            sleep(300);
+            robot.drivetrain.encoderDrive(0, 0, 0.6, 0, 0, -34, 1.5, this);
             robot.sideGrabber.moveGrabber("down", "closed");
             sleep(300);
             robot.sideGrabber.moveGrabber("upBlock", "closed");
             robot.drivetrain.encoderDrive(0.7, 0.7, 0.7, -4, 4, 5, 0.8, this);
-            robot.drivetrain.encoderDrive(0.95, 0.90, 0.5, -211, -210, -10, 3.2, this);
+            robot.drivetrain.encoderDrive(0.92, 0.90, 0.5, -212, -210, -5, 3.2, this);
             robot.sideGrabber.moveGrabber("down", "open");
             sleep(300);
             robot.sideGrabber.moveGrabber("upEmpty", "initial");
-            robot.drivetrain.encoderDrive(0.96, 0.9, 0, 143, 140, 0, 2, this);
+            robot.drivetrain.encoderDrive(0.9, 0.9, 0, 145, 145, 0, 2, this);
             //robot.drivetrain.encoderDrive(0, 0, 0.7, 0, 0, -17, 1.5, this);
             robot.sideGrabber.moveGrabber("down", "open");
-            robot.drivetrain.encoderDrive(0, 0, 0.7, 0, 0, -10, 1.2, this);
+            //robot.drivetrain.encoderDrive(0, 0, 0.7, 0, 0, -10, 1.2, this);
+            sleep(400);
             robot.sideGrabber.moveGrabber("down", "closed");
-            sleep(200);
+            sleep(400);
             robot.sideGrabber.moveGrabber("upBlock", "closed");
             robot.drivetrain.encoderDrive(0.9, 0.9, 0, -155, -150, 0, 2, this);
             robot.sideGrabber.moveGrabber("down", "open");
-            sleep(300);
+            sleep(500);
             robot.sideGrabber.moveGrabber("upEmpty", "initial");
+            sleep(400);
             robot.drivetrain.encoderDrive(0.92, 0.9, 0, 53, 50, 0, 1.5, this);
         }
         else if(skystonePos.equals("mid")) {
@@ -167,53 +168,44 @@ public class AutonRedDepotSide extends LinearOpMode {
             sleep(300);
             robot.sideGrabber.moveGrabber("upBlock", "closed");
             robot.drivetrain.encoderDrive(0.7, 0.7, 0.7, -4, 4, 5, 0.8, this);
-            robot.drivetrain.encoderDrive(0.95, 0.90, 0.5, -191, -190, -10, 3.2, this);
+            robot.drivetrain.encoderDrive(0.92, 0.90, 0.5, -191, -190, -5, 3.2, this);
             robot.sideGrabber.moveGrabber("down", "open");
             sleep(300);
             robot.sideGrabber.moveGrabber("upEmpty", "initial");
-            robot.drivetrain.encoderDrive(0.94, 0.9, 0, 122, 120, 0, 2, this);
-            //robot.drivetrain.encoderDrive(0, 0, 0.7, 0, 0, -17, 1.5, this);
+            robot.drivetrain.encoderDrive(0.91, 0.9, 0, 121, 120, 0, 2, this);
             robot.sideGrabber.moveGrabber("down", "open");
-            robot.drivetrain.encoderDrive(0, 0, 0.7, 0, 0, -9, 1.5, this);
+            robot.drivetrain.encoderDrive(0, 0, 0.7, 0, 0, -5, 1.5, this);
             robot.sideGrabber.moveGrabber("down", "closed");
-            sleep(300);
+            sleep(400);
             robot.sideGrabber.moveGrabber("upBlock", "closed");
-            robot.drivetrain.encoderDrive(0.9, 0.9, 0, -132, -130, 0, 2, this);
+            robot.drivetrain.encoderDrive(0.9, 0.9, 0.6, -132, -130, 8, 2, this);
             robot.sideGrabber.moveGrabber("down", "open");
-            sleep(200);
+            sleep(400);
             robot.sideGrabber.moveGrabber("upEmpty", "initial");
+            sleep(300);
             robot.drivetrain.encoderDrive(0.92, 0.9, 0, 50, 57, 0, 1.5, this);
-
-
-
         }
         else {
             robot.drivetrain.encoderDrive(0.6, 0.6, 0, -39, -39, 0, 1, this);
-            robot.drivetrain.encoderDrive(0, 0, 0.7, 0, 0, -30, 0.8, this);
             robot.sideGrabber.moveGrabber("down", "open");
-            sleep(500);
+            robot.drivetrain.encoderDrive(0, 0, 0.7, 0, 0, -25, 0.8, this);
             robot.sideGrabber.moveGrabber("down", "closed");
             sleep(500);
             robot.sideGrabber.moveGrabber("upBlock", "closed");
-//            robot.drivetrain.encoderDrive(0, 0, 0.5, 0, 0, 10, 1, this);
-            //robot.drivetrain.encoderDrive(0.6, 0.6, 0, -15, -15, 0, 4, this);
-            //robot.drivetrain.encoderDrive(0.6, 0.6, 0, 36, -36, 0, 4, this);
-            //robot.drivetrain.encoderDrive(0.6, 0.6, 0.6, 13, 14, -250, 4, this);
             robot.drivetrain.encoderDrive(0.7, 0.7, 0, -7, 7, 0, 0.7, this);
-            robot.drivetrain.encoderDrive(0.72, 0.7, 0.5, -174, -170, -5, 3, this);
+            robot.drivetrain.encoderDrive(0.9, 0.9, 0.5, -171, -170, -5, 3, this);
             robot.sideGrabber.moveGrabber("down", "open");
             sleep(300);
             robot.sideGrabber.moveGrabber("upEmpty", "initial");
-            robot.drivetrain.encoderDrive(0.62, 0.6, 0, 105, 100, 0, 2.8, this);
+            robot.drivetrain.encoderDrive(0.9, 0.9, 0, 101, 100, 0, 2.8, this);
             robot.sideGrabber.moveGrabber("upEmpty", "open");
-            robot.drivetrain.encoderDrive(0.7, 0.7, 0, 5, -5, 0, 1, this);
             robot.sideGrabber.moveGrabber("down", "open");
-            robot.drivetrain.encoderDrive(0, 0, 0.6, 0, 0, -15, 1.7, this);
+            robot.drivetrain.encoderDrive(0, 0, 0.6, 0, 0, -10, 1.7, this);
             robot.sideGrabber.moveGrabber("down", "closed");
             sleep(500);
             robot.sideGrabber.moveGrabber("upBlock", "closed");
-            robot.drivetrain.encoderDrive(0, 0, 0.6, 0, 0, 15, 1, this);
-            robot.drivetrain.encoderDrive(0.72, 0.7, 0, -115, -110, 0, 3, this);
+            robot.drivetrain.encoderDrive(0, 0, 0.6, 0, 0, 10, 1, this);
+            robot.drivetrain.encoderDrive(0.86, 0.85, 0, -111, -110, 0, 3, this);
             robot.sideGrabber.moveGrabber("down", "open");
             sleep(300);
             robot.sideGrabber.moveGrabber("upEmpty", "initial");
