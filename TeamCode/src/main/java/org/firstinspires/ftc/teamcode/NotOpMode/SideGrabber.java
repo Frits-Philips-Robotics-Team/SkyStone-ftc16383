@@ -20,7 +20,7 @@ public class SideGrabber {
     public void moveGrabber(String armPos, String gripperPos) {
         final double upBlockValue = 0.38;
         final double upEmptyValue = 0.41;
-        final double downValue = 0.84;
+        final double downValue = 0.82;
         final double openValue = 0.34;
         final double closedValue = 0.8;
         final double initialGripperValue = 0.91;
