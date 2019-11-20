@@ -84,11 +84,12 @@ public class AutonBlueDepotSide extends LinearOpMode {
         waitForStart();
 
         robot.sideGrabber.moveGrabber("upBlock", "open");
-        robot.drivetrain.encoderDrive(0.6, 0.6, 0, -67, -67, 0, 1.5, this);
-        robot.drivetrain.encoderDrive(0.6, 0.6, 0, -5, -5, 0, 0.7, this);
-        robot.drivetrain.encoderDrive(0.7, 0.7, 0, 7, 7, 0, .7, this);
-        robot.drivetrain.encoderDrive(0.2, 0.2, 0.4, -2, 4, -69, 3.5, this);
+        robot.drivetrain.encoderDrive(0.6, 0.6, 0, -63, -63, 0, 1.5, this);
+        robot.drivetrain.encoderDrive(0.3, 0.3, 0, -6, -6, 0, 0.7, this);
+        robot.drivetrain.encoderDrive(0.5, 0.5, 0, 18, 18, 0, .7, this);
+        robot.drivetrain.encoderDrive(0, 0.8, 0.4, 0, 6, -63, 3.5, this);
 
+        sleep(400);
         timer.reset();
         if(opModeIsActive()) {
             while (skystonePos == null && opModeIsActive()) {
@@ -104,18 +105,18 @@ public class AutonBlueDepotSide extends LinearOpMode {
                             Recognition recognitionTwo = updatedRecognitions.get(1);
                             if (recognitionOne.getLabel().equals(LABEL_SECOND_ELEMENT)) {
                                 if (recognitionOne.getLeft() < recognitionTwo.getLeft()) {
-                                    skystonePos = "mid";
+                                    skystonePos = "left";
                                 } else {
-                                    skystonePos = "right";
+                                    skystonePos = "mid";
                                 }
                             } else if (recognitionTwo.getLabel().equals(LABEL_SECOND_ELEMENT)) {
                                 if (recognitionTwo.getLeft() < recognitionOne.getLeft()) {
-                                    skystonePos = "mid";
+                                    skystonePos = "left";
                                 } else {
-                                    skystonePos = "right";
+                                    skystonePos = "mid";
                                 }
                             } else {
-                                skystonePos = "left";
+                                skystonePos = "right";
                             }
                         }
 
@@ -139,17 +140,19 @@ public class AutonBlueDepotSide extends LinearOpMode {
         telemetry.update();
 
         if(skystonePos.equals("mid") || skystonePos.equals("fail")) {
+            robot.drivetrain.encoderDrive(0.6, 0.6, 0, -15, -15, 0, 1.5, this);
             robot.sideGrabber.moveGrabber("down", "open");
-            robot.drivetrain.encoderDrive(0, 0, 0.5, 0, 0, -18, 2, this);
+            robot.drivetrain.encoderDrive(0, 0, 0.5, 0, 0, -20, 2, this);
             robot.sideGrabber.moveGrabber("down", "closed");
             sleep(300);
             robot.sideGrabber.moveGrabber("upBlock", "closed");
-            robot.drivetrain.encoderDrive(0.7, 0.7, 0, 4, -4, 0, 0.8, this);
-            robot.drivetrain.encoderDrive(0.9, 0.9, 0, 211, 210, 0, 3.2, this);
+            robot.drivetrain.encoderDrive(0.7, 0.7, 0, 4, -3, 0, 0.8, this);
+            robot.drivetrain.encoderDrive(0.7, 0.72, 0.6, 160, 160, 12 , 3.2, this);
+            sleep(300);
             robot.sideGrabber.moveGrabber("down", "open");
             sleep(300);
             robot.sideGrabber.moveGrabber("upEmpty", "initial");
-            robot.drivetrain.encoderDrive(0.9, 0.9, 0, -145, -145, 7, 2, this);
+            robot.drivetrain.encoderDrive(0.9, 0.9, 0.5, -120, -120, -3, 2, this);
             robot.sideGrabber.moveGrabber("upEmpty", "open");
             sleep(300);
             robot.sideGrabber.moveGrabber("down", "open");
@@ -157,16 +160,16 @@ public class AutonBlueDepotSide extends LinearOpMode {
             robot.sideGrabber.moveGrabber("down", "closed");
             sleep(400);
             robot.sideGrabber.moveGrabber("upBlock", "closed");
-            robot.drivetrain.encoderDrive(0.9, 0.9, 0, 152, 150, 0, 2, this);
+            robot.drivetrain.encoderDrive(0.9, 0.9, 0, 140, 139, 0, 2, this);
             robot.sideGrabber.moveGrabber("down", "open");
             sleep(500);
             robot.sideGrabber.moveGrabber("upEmpty", "initial");
             sleep(400);
-            robot.drivetrain.encoderDrive(0, 0, 0.5, 0, 0, 10, 1, this);
+            //robot.drivetrain.encoderDrive(0, 0, 0.5, 0, 0, 10, 1, this);
             robot.drivetrain.encoderDrive(0.9, 0.9, 0, -50, -50, 0, 1.5, this);
         }
         else if(skystonePos.equals("left")) {
-            robot.drivetrain.encoderDrive(0.7, 0.7, 0, 20, 20, 0, 1.5, this);
+            //robot.drivetrain.encoderDrive(0.7, 0.7, 0, 20, 20, 0, 1.5, this);
             robot.drivetrain.encoderDrive(0, 0, 0.6, 0, 0, -12, 1.5, this);
             robot.sideGrabber.moveGrabber("down", "open");
             sleep(300);
@@ -192,19 +195,21 @@ public class AutonBlueDepotSide extends LinearOpMode {
             sleep(300);
             robot.drivetrain.encoderDrive(0.92, 0.9, 0, -50, -50, 0, 1.5, this);
         }
-        else { // skystonePos == right
-            robot.drivetrain.encoderDrive(0.6, 0.6, 0, 39, 39, 0, 1, this);
+        else { // skystonePos.equals("right")
+            robot.drivetrain.encoderDrive(0.6, 0.6, 0, 27, 28, 0, 1, this);
             robot.sideGrabber.moveGrabber("down", "open");
-            robot.drivetrain.encoderDrive(0, 0, 0.7, 0, 0, -19, 0.8, this);
+            sleep(400);
+            robot.drivetrain.encoderDrive(0, 0, 0.4, 0, 0, -16, 2, this);
             robot.sideGrabber.moveGrabber("down", "closed");
             sleep(500);
             robot.sideGrabber.moveGrabber("upBlock", "closed");
             //robot.drivetrain.encoderDrive(0.7, 0.7, 0, 4, -4, 0, 0.7, this);
-            robot.drivetrain.encoderDrive(0.9, 0.9, 0, 161, 160, 5, 3, this);
+            sleep(400);
+            robot.drivetrain.encoderDrive(0.9, 0.9, 0.5, 152, 150, 6, 2, this);
             robot.sideGrabber.moveGrabber("down", "open");
             sleep(300);
             robot.sideGrabber.moveGrabber("upEmpty", "initial");
-            robot.drivetrain.encoderDrive(0.9, 0.9, 0, -110, -110, 5, 2.8, this);
+            robot.drivetrain.encoderDrive(0.9, 0.9, 0, -108, -108, 0, 2.8, this);
             robot.sideGrabber.moveGrabber("upEmpty", "open");
             robot.sideGrabber.moveGrabber("down", "open");
             //robot.drivetrain.encoderDrive(0, 0, 0.6, 0, 0, -10, 1.7, this);
@@ -212,12 +217,13 @@ public class AutonBlueDepotSide extends LinearOpMode {
             robot.sideGrabber.moveGrabber("down", "closed");
             sleep(500);
             robot.sideGrabber.moveGrabber("upBlock", "closed");
-            robot.drivetrain.encoderDrive(0, 0, 0.6, 0, 0, 10, 1, this);
-            robot.drivetrain.encoderDrive(0.86, 0.85, 0, 111, 110, 0, 3, this);
+            sleep(400);
+            //robot.drivetrain.encoderDrive(0, 0, 0.6, 0, 0, 10, 1, this);
+            robot.drivetrain.encoderDrive(0.85, 0.86, 0, 109, 108, 0, 3, this);
             robot.sideGrabber.moveGrabber("down", "open");
-            sleep(300);
+            sleep(600);
             robot.sideGrabber.moveGrabber("upEmpty", "initial");
-            robot.drivetrain.encoderDrive(0.7, 0.7, 0, -50, -50, 0, 1.5, this);
+            robot.drivetrain.encoderDrive(0.7, 0.7, 0, -35, -35, 0, 1.5, this);
         }
 
         robot.drivetrain.encoderDrive(0, 0, 0.4, 0, 0, -30, 2, this);
