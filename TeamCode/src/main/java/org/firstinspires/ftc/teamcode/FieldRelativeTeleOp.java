@@ -76,10 +76,10 @@ public class FieldRelativeTeleOp extends OpMode
 
         robot.liftGrab.setLiftPower(-gamepad2.left_stick_y);
 
-        if(gamepad1.a) {
+        if(gamepad1.left_trigger > 0.05) {
             robot.drivetrain.setSpeed(0.75);
         }
-        if(gamepad1.y) {
+        if(gamepad1.right_trigger > 0.05) {
             robot.drivetrain.setSpeed(1);
         }
 
@@ -96,7 +96,8 @@ public class FieldRelativeTeleOp extends OpMode
         if(gamepad1.dpad_left) {
             robot.foundationServo.moveUp(false);
         }
-        else if(gamepad1.dpad_right) {
+        else if(gamepad1.dpad_right
+        ) {
             robot.foundationServo.moveUp(true);
         }
 

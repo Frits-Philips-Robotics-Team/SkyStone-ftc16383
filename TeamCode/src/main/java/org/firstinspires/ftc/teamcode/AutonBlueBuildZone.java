@@ -48,15 +48,15 @@ public class AutonBlueBuildZone extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        robot.drivetrain.encoderDrive(0.72, 0.7, 0.6, 83, 80, 40, 2, this);
-        robot.drivetrain.encoderDrive(0.5, 0.5, 0, 7, 7, 0, 1.5, this);
+        robot.drivetrain.encoderDrive(0.72, 0.7, 0.6, 87, 81, 40, 2, this);
+        robot.drivetrain.encoderDrive(0.5, 0.5, 0, 15, 15, 0, 1.5, this);
         robot.foundationServo.moveUp(false);
         sleep(300);
-        robot.drivetrain.encoderDrive(0.72, 0.7, 0, -90, -87, 0, 2.5, this);
+        robot.drivetrain.encoderDrive(0.72, 0.74, 0, -97, -100, 0, 2.5, this);
         robot.foundationServo.moveUp(true);
         robot.drivetrain.encoderDrive(0.55, 0.55, 0, 5, 5, 0, 1.5, this);
         robot.drivetrain.encoderDrive(0.55, 0.55, 0, -4, -4, 0, 1.5, this);
-        robot.drivetrain.encoderDrive(0, 0, 0.5, 0, 0, -140, 7, this);
+        robot.drivetrain.encoderDrive(0, 0.2, 0.5, 0, 5, -140, 7, this);
         robot.sideGrabber.moveGrabber("down", "");
         sleep(300);
     }

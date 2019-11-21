@@ -29,7 +29,7 @@ public class LiftGrab {
     }
 
     public void moveGrabber(String armPos, String gripperPos) {
-        final double inValue = 0.74;
+        final double inValue = 0.73;
         final double outValue = 0;
 
         final double openValue = 0.34;
@@ -54,8 +54,8 @@ public class LiftGrab {
     }
 
     public void setLiftPower(double liftPower) {
-        liftOne.setPower(liftPower);
-        liftTwo.setPower(liftPower);
+        liftOne.setPower(0.9 * liftPower);
+        liftTwo.setPower(0.9 * liftPower);
     }
 
     public void encoderLift(double speed, double cm, double TimeoutS, LinearOpMode opmode) {

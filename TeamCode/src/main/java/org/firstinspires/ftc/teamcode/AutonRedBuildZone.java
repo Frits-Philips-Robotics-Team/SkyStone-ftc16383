@@ -53,11 +53,11 @@ public class AutonRedBuildZone extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        robot.drivetrain.encoderDrive(0.7, 0.7, 0.6, 80, 80, -40, 2, this);
-        robot.drivetrain.encoderDrive(0.5, 0.5, 0, 7, 7, 0, 1.5, this);
+        robot.drivetrain.encoderDrive(0.7, 0.7, 0.6, 80, 84, -40, 2, this);
+        robot.drivetrain.encoderDrive(0.5, 0.5, 0, 10, 10, 0, 1.5, this);
         robot.foundationServo.moveUp(false);
         sleep(300);
-        robot.drivetrain.encoderDrive(0.72, 0.7, 0, -87, -86, 0, 2.5, this);
+        robot.drivetrain.encoderDrive(0.72, 0.7, 0, -90, -90, 0, 2.5, this);
         robot.foundationServo.moveUp(true);
         robot.drivetrain.encoderDrive(0.55, 0.55, 0, 5, 5, 0, 1.5, this);
         robot.drivetrain.encoderDrive(0.55, 0.55, 0, -4, -4, 0, 1.5, this);
