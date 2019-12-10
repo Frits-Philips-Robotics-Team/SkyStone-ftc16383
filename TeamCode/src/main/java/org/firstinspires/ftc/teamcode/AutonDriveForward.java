@@ -35,8 +35,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.NotOpMode.FritsBot;
 
 
-@Autonomous(name="BlueDepotToLine", group="blue")
-public class AutonBlueDepotToLine extends LinearOpMode {
+@Autonomous(name="DriveForward", group="simple")
+public class AutonDriveForward extends LinearOpMode {
 
     private FritsBot robot = new FritsBot();
 
@@ -48,8 +48,6 @@ public class AutonBlueDepotToLine extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        robot.drivetrain.encoderDrive(0.6, 0.6, 0, 50, 50, 0, 3, this);
-        robot.drivetrain.encoderDrive(0, 0, 0.5, 0, 0, -40, 3, this);
-        robot.drivetrain.encoderDrive(0.6, 0.6, 0, -20, 20, 0, 2, this);
+        robot.drivetrain.encoderDrive(0.6, 0.6, 0, 20, 20, 0, 3, this);
     }
 }

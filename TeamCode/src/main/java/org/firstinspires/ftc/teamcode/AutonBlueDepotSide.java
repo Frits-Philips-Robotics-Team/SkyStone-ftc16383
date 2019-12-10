@@ -84,7 +84,7 @@ public class AutonBlueDepotSide extends LinearOpMode {
         waitForStart();
 
         robot.sideGrabber.moveGrabber("upBlock", "open");
-        robot.drivetrain.encoderDrive(0.6, 0.6, 0, -65, -65, 0, 1.5, this);
+        robot.drivetrain.encoderDrive(0.6, 0.6, 0, -70, -70, 0, 1.5, this);
         robot.drivetrain.encoderDrive(0.3, 0.3, 0, -6, -6, 0, 0.7, this);
         robot.drivetrain.encoderDrive(0.5, 0.5, 0, 20, 20, 0, .7, this);
         robot.drivetrain.encoderDrive(0, 0.8, 0.4, 0, 6, -63, 3.5, this);
@@ -125,10 +125,10 @@ public class AutonBlueDepotSide extends LinearOpMode {
                 }
 
                 // If phone fails to detect, run mid program
-//                if(timer.seconds() > 3) {
-//                    skystonePos = "fail";
-//                    break;
-//                }
+                if(timer.seconds() > 3) {
+                    skystonePos = "fail";
+                    break;
+                }
             }
         }
 
@@ -139,7 +139,7 @@ public class AutonBlueDepotSide extends LinearOpMode {
         telemetry.addData("position", skystonePos);
         telemetry.update();
 
-        if(skystonePos.equals("mid") || skystonePos.equals("fail")) {
+        if(skystonePos.equals("mid")) {
             robot.drivetrain.encoderDrive(0.6, 0.6, 0, -23, -23, 0, 1.5, this);
             robot.sideGrabber.moveGrabber("down", "open");
             robot.drivetrain.encoderDrive(0, 0, 0.5, 0, 0, -20, 2, this);
@@ -148,12 +148,12 @@ public class AutonBlueDepotSide extends LinearOpMode {
             robot.sideGrabber.moveGrabber("upBlock", "closed");
             sleep(300);
             //robot.drivetrain.encoderDrive(0.7, 0.7, 0, 4, -3, 0, 0.8, this);
-            robot.drivetrain.encoderDrive(0.7, 0.7, 0.6, 195, 195, 8 , 3.2, this);
+            robot.drivetrain.encoderDrive(0.7, 0.7, 0.6, 199, 199, 8 , 3.2, this);
             sleep(300);
             robot.sideGrabber.moveGrabber("down", "open");
             sleep(300);
             robot.sideGrabber.moveGrabber("upEmpty", "initial");
-            robot.drivetrain.encoderDrive(0.8, 0.8, 0.5, -126, -125, -1, 2, this);
+            robot.drivetrain.encoderDrive(0.8, 0.8, 0.5, -130, -129, -10, 2, this);
             robot.sideGrabber.moveGrabber("upEmpty", "open");
             sleep(300);
             robot.sideGrabber.moveGrabber("down", "open");
@@ -197,7 +197,7 @@ public class AutonBlueDepotSide extends LinearOpMode {
             sleep(300);
             robot.drivetrain.encoderDrive(0.7, 0.7, 0, -40, -40, 0, 1.5, this);
         }
-        else { // skystonePos.equals("right")
+        else { // skystonePos is right or fail
             robot.drivetrain.encoderDrive(0.6, 0.6, 0, 25, 26, 0, 1, this);
             robot.sideGrabber.moveGrabber("down", "open");
             sleep(400);

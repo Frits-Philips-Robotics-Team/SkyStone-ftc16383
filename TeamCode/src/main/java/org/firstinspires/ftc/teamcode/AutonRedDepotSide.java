@@ -92,7 +92,7 @@ public class AutonRedDepotSide extends LinearOpMode {
         waitForStart();
 
         robot.sideGrabber.moveGrabber("upBlock", "open");
-        robot.drivetrain.encoderDrive(0.6, 0.6, 0, 67, 67, 0, 1.5, this);
+        robot.drivetrain.encoderDrive(0.6, 0.6, 0, 72, 72, 0, 1.5, this);
         robot.drivetrain.encoderDrive(0.6, 0.6, 0, -5, -5, 0, 0.7, this);
         robot.drivetrain.encoderDrive(0.2, 0.7, 0.5, -4, 7, -52, 2.5, this);
 
