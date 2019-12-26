@@ -43,7 +43,7 @@ public class AutonBlueBuildToLine extends LinearOpMode {
     @Override
     public void runOpMode() {
 
-        robot.init(hardwareMap);
+        robot.init(hardwareMap, );
         robot.liftGrab.moveGrabber("in", "open");
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
