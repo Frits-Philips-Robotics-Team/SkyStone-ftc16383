@@ -29,9 +29,7 @@ public class XDrive {
     private double rrPowerCurrent;
     private double frPowerCurrent;
 
-    LinearOpMode opmode;
-
-    void init(HardwareMap hwMap, LinearOpMode opmode) {
+    void init(HardwareMap hwMap) {
         flDrive = hwMap.get(DcMotor.class, "FL_drive");
         rlDrive = hwMap.get(DcMotor.class, "RL_drive");
         rrDrive = hwMap.get(DcMotor.class, "RR_drive");
@@ -57,7 +55,11 @@ public class XDrive {
         flPowerCurrent = 0;
         rlPowerCurrent = 0;
         rrPowerCurrent = 0;
+    }
 
+    private LinearOpMode opmode;
+
+    public void initAutonomous(LinearOpMode opmode) {
         this.opmode = opmode;
     }
 

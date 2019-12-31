@@ -33,8 +33,8 @@ public class FritsBot {
 
     LinearOpMode opmode;
 
-    public void init(HardwareMap hwMap, LinearOpMode opmode) {
-        drivetrain.init(hwMap, opmode);
+    public void init(HardwareMap hwMap) {
+        drivetrain.init(hwMap);
         //servoTest.init(hwMap);
         sideGrabber.init(hwMap);
         liftGrab.init(hwMap);
