@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.NotOpMode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
@@ -40,10 +41,10 @@ public class XDrive {
         rrDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         frDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        flDrive.setDirection(DcMotor.Direction.REVERSE);
-        rlDrive.setDirection(DcMotor.Direction.REVERSE);
-        rrDrive.setDirection(DcMotor.Direction.FORWARD);
-        frDrive.setDirection(DcMotor.Direction.FORWARD);
+        flDrive.setDirection(DcMotor.Direction.FORWARD);
+        rlDrive.setDirection(DcMotor.Direction.FORWARD);
+        rrDrive.setDirection(DcMotor.Direction.REVERSE);
+        frDrive.setDirection(DcMotor.Direction.REVERSE);
 
         flDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rlDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -59,7 +60,7 @@ public class XDrive {
 
     private LinearOpMode opmode;
 
-    public void initAutonomous(LinearOpMode opmode) {
+    void initAutonomous(LinearOpMode opmode) {
         this.opmode = opmode;
     }
 
@@ -69,6 +70,18 @@ public class XDrive {
                 rlDrive.getCurrentPosition(),
                 rrDrive.getCurrentPosition(),
                 frDrive.getCurrentPosition());
+    }
+
+    void directDrive(double forwardSpeed, double strafeSpeed, double rotateSpeed) {
+        double flDriveSpeed = Range.clip(forwardSpeed + strafeSpeed + rotateSpeed, -maxSpeed, maxSpeed);
+        double rlDriveSpeed = Range.clip(forwardSpeed - strafeSpeed + rotateSpeed, -maxSpeed, maxSpeed);
+        double rrDriveSpeed = Range.clip(forwardSpeed + strafeSpeed - rotateSpeed, -maxSpeed, maxSpeed);
+        double frDriveSpeed = Range.clip(forwardSpeed - strafeSpeed - rotateSpeed, -maxSpeed, maxSpeed);
+
+        flDrive.setPower(flDriveSpeed);
+        rlDrive.setPower(rlDriveSpeed);
+        rrDrive.setPower(rrDriveSpeed);
+        frDrive.setPower(frDriveSpeed);
     }
 
     void drive(double forwardSpeed, double strafeSpeed, double rotateSpeed) {

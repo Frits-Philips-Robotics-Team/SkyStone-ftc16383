@@ -7,11 +7,11 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class FoundationServo {
 
-    private Servo left_servo;
-    private Servo right_servo;
+//    private Servo left_servo;
+//    private Servo right_servo;
     public void init(HardwareMap hwMap) {
-        left_servo = hwMap.get(Servo.class, "left_servo");
-        right_servo = hwMap.get(Servo.class, "right_servo");
+//        left_servo = hwMap.get(Servo.class, "left_servo");
+//        right_servo = hwMap.get(Servo.class, "right_servo");
 
         moveUp(true);
     }
@@ -23,12 +23,12 @@ public class FoundationServo {
         final double rightDownValue = 0.66;
 
         if(servoUp) {
-            left_servo.setPosition(leftUpValue);
-            right_servo.setPosition(rightUpValue);
+//            left_servo.setPosition(leftUpValue);
+//            right_servo.setPosition(rightUpValue);
         }
         else {
-            left_servo.setPosition(leftDownValue);
-            right_servo.setPosition(rightDownValue);
+//            left_servo.setPosition(leftDownValue);
+//            right_servo.setPosition(rightDownValue);
         }
     }
 }

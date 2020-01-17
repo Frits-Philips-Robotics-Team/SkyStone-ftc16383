@@ -17,10 +17,10 @@ public class LiftGrab {
     private ElapsedTime encoderTime = new ElapsedTime();
 
     public void init(HardwareMap hwMap) {
-        grabberSlide = hwMap.get(DcMotor.class, "grabber_slide");
-        gripper = hwMap.get(Servo.class, "lift_gripper");
-        liftOne = hwMap.get(DcMotor.class, "liftOne");
-        liftTwo = hwMap.get(DcMotor.class, "liftTwo");
+//        grabberSlide = hwMap.get(DcMotor.class, "grabber_slide");
+//        gripper = hwMap.get(Servo.class, "lift_gripper");
+//        liftOne = hwMap.get(DcMotor.class, "liftOne");
+//        liftTwo = hwMap.get(DcMotor.class, "liftTwo");
 
         grabberSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         grabberSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

@@ -11,8 +11,8 @@ public class SideGrabber {
     private Servo gripper;
 
     public void init(HardwareMap hwMap) {
-        arm = hwMap.get(Servo.class, "side_arm");
-        gripper = hwMap.get(Servo.class, "side_gripper");
+//        arm = hwMap.get(Servo.class, "side_arm");
+//        gripper = hwMap.get(Servo.class, "side_gripper");
 
         moveGrabber("upEmpty", "initial");
     }

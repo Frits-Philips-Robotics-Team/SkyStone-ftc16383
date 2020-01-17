@@ -31,15 +31,13 @@ public class FritsBot {
     private double prevAngle;
     private double fullRotationOffset;
 
-    LinearOpMode opmode;
-
     public void init(HardwareMap hwMap) {
         drivetrain.init(hwMap);
         //servoTest.init(hwMap);
-        sideGrabber.init(hwMap);
-        liftGrab.init(hwMap);
-        foundationServo.init(hwMap);
-        fritsIntake.init(hwMap);
+//        sideGrabber.init(hwMap);
+//        liftGrab.init(hwMap);
+//        foundationServo.init(hwMap);
+//        fritsIntake.init(hwMap);
         imu = hwMap.get(BNO055IMU.class, "imu");
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         imu.initialize(parameters);
@@ -50,8 +48,13 @@ public class FritsBot {
         prevAngle = 0;
         fullRotationOffset = 0;
         holdAngleOffset = 0;
+    }
 
+    private LinearOpMode opmode;
+
+    public void initAutonomous(LinearOpMode opmode) {
         this.opmode = opmode;
+        drivetrain.initAutonomous(opmode);
     }
 
     public void driveSimple(double forward, double strafe, double rotate) {
@@ -73,6 +76,7 @@ public class FritsBot {
         double rotateNew;
         final double adjustmentSpeed = 0.4;
 
+
         if (rotate == 0 && !wasRotating) {
             rotateNew = adjustmentSpeed * (rotationSetpoint - currentHeading);
         } else if (wasRotating && rotate == 0) {
@@ -82,15 +86,21 @@ public class FritsBot {
         } else if (!wasRotating) {
             wasRotating = true;
             rotateNew = rotate;
+            rotateTimer.reset();
         } else {
             rotateNew = rotate;
+            rotateTimer.reset();
+        }
+
+        if (rotateTimer.milliseconds() < 300) {
+            rotationSetpoint = currentHeading;
         }
 
         if (Math.abs(rotateNew) < 0.02) {
             rotateNew = 0;
         }
 
-        driveP.subtractAngle(currentHeading - holdAngleOffset);
+        driveP.subtractAngle(-currentHeading + holdAngleOffset);
         drivetrain.drive(driveP.getY(), driveP.getX(), rotateNew);
     }
 
@@ -106,31 +116,41 @@ public class FritsBot {
     }
 
     // rotate relative to rotation setpoint
-    public void rotateAbsolute(double speed, int rotation, double timeoutS) {
+    public void rotateAbsolute(double speed, int rotation, double timeoutS, Telemetry telemetry) {
         double currentHeading = getHeadingRadians();
-        double rotateNew;
+        int wasAtSetpoint = 0;
 
-        double kP = 1.5;
-        double kI = 0;
+        double kP = 1;
+        double kI = 0.4;
         double kD = 0;
-        long dt = 50;
+        long dt = 20;
         double integral = 0;
         double derivative = 0;
         double prevError = 0;
 
         rotationSetpoint = Math.toRadians(rotation) - holdAngleOffset;
 
-        double error = rotationSetpoint - currentHeading;
+        double error;
         rotateTimer.reset();
 
-        while (rotateTimer.seconds() < timeoutS && error > 0.035 && opmode.opModeIsActive()) {
+        while (rotateTimer.seconds() < timeoutS && wasAtSetpoint != 4 && opmode.opModeIsActive()) {
+            currentHeading = getHeadingRadians();
             error = rotationSetpoint - currentHeading;
             integral = integral + error * dt;
             derivative = (error - prevError) / dt;
 
-            double rotateSpeed = Range.clip(kP * error + kI * integral + kD * derivative, -1, 1);
-            drivetrain.drive(0, 0, rotateSpeed);
+            double rotateSpeed = Range.clip(speed * (kP * error + kI * integral + kD * derivative), -1, 1);
+            drivetrain.directDrive(0, 0, rotateSpeed);
             prevError = error;
+
+            if (Math.abs(error) < 0.02) {
+                wasAtSetpoint++;
+            }
+
+            telemetry.addData("target: ", rotationSetpoint);
+            reportHeadingRadians(telemetry);
+            telemetry.addData("error: ", error);
+            telemetry.update();
             opmode.sleep(dt);
         }
     }

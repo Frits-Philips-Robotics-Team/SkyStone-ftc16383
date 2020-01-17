@@ -29,12 +29,12 @@ import java.util.List;
 public class AutonRedDetect extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
 
+
     //0 means skystone, 1 means yellow stone
     //-1 for debug, but we can keep it like this because if it works, it should change to either 0 or 255
     private static int valMid = -1;
     private static int valLeft = -1;
     private static int valRight = -1;
-
     private static float rectHeight = .6f/8f;
     private static float rectWidth = 1.5f/8f;
 
@@ -65,7 +65,7 @@ public class AutonRedDetect extends LinearOpMode {
         //width = height if camera is in portrait mode
 
         robot.init(hardwareMap);
-        robot.drivetrain.initAutonomous(this);
+        robot.initAutonomous(this);
 
         waitForStart();
         runtime.reset();
