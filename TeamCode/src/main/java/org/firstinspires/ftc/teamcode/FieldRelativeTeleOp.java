@@ -122,9 +122,10 @@ public class FieldRelativeTeleOp extends OpMode
 //            robot.sideGrabber.moveGrabber("down", "");
 //        }
 
-        // Show the elapsed game time
-        telemetry.addData("Status", "Run Time: " + runtime.toString());
-        robot.reportHeadingRadians(telemetry);
+        // Show telemetry
+        //telemetry.addData("Status", "Run Time: " + runtime.toString());
+        robot.drivetrain.reportSpeeds(telemetry);
+        robot.drivetrain.reportEncoders(telemetry);
     }
 
     // Code to run ONCE after the driver hits STOP

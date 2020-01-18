@@ -203,4 +203,10 @@ public class XDrive {
         frDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
+    public void reportSpeeds(Telemetry telemetry) {
+        telemetry.addData("FL_speed: ", flPowerCurrent);
+        telemetry.addData("RL_speed: ", rlPowerCurrent);
+        telemetry.addData("RR_speed: ", rrPowerCurrent);
+        telemetry.addData("FR_speed: ", frPowerCurrent);
+    }
 }

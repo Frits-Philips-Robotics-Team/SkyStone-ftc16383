@@ -120,9 +120,9 @@ public class FritsBot {
         double currentHeading = getHeadingRadians();
         int wasAtSetpoint = 0;
 
-        double kP = 1;
-        double kI = 0.4;
-        double kD = 0;
+        double kP = 0.8;
+        double kI = 0;
+        double kD = 0.5;
         long dt = 20;
         double integral = 0;
         double derivative = 0;
@@ -147,10 +147,10 @@ public class FritsBot {
                 wasAtSetpoint++;
             }
 
-            telemetry.addData("target: ", rotationSetpoint);
-            reportHeadingRadians(telemetry);
-            telemetry.addData("error: ", error);
-            telemetry.update();
+//            telemetry.addData("target: ", rotationSetpoint);
+//            reportHeadingRadians(telemetry);
+//            telemetry.addData("error: ", error);
+//            telemetry.update();
             opmode.sleep(dt);
         }
     }
