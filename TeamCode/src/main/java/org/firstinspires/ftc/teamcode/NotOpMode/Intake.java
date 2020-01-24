@@ -1,33 +1,29 @@
 package org.firstinspires.ftc.teamcode.NotOpMode;
 
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.Range;
 
-class Intake {
-    private DcMotor leftWheel;
-    private DcMotor rightWheel;
+import org.jetbrains.annotations.NotNull;
+
+public class Intake {
+    private CRServo leftWheel;
+    private CRServo rightWheel;
 
     private double prevPower;
 
-    void init(HardwareMap hwMap) {
-//        leftWheel = hwMap.get(DcMotor.class, "left_wheel");
-//        rightWheel = hwMap.get(DcMotor.class, "right_wheel");
-//
-//        leftWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-//        rightWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-//
-//        leftWheel.setDirection(DcMotor.Direction.FORWARD);
-//        rightWheel.setDirection(DcMotor.Direction.REVERSE);
-//
-//        leftWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-//        rightWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+    void init(@NotNull HardwareMap hwMap) {
+        leftWheel = hwMap.get(CRServo.class, "left_intake");
+        rightWheel = hwMap.get(CRServo.class, "right_intake");
 
+        rightWheel.setDirection(CRServo.Direction.REVERSE);
         prevPower = 0;
     }
 
-    void setIntakePower(double power) {
+    public void setPower(double power) {
         if (power != prevPower) {
             power = Range.clip(power, -1, 1);
             leftWheel.setPower(power);

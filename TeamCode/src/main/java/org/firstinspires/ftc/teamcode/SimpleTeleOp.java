@@ -78,15 +78,15 @@ public class SimpleTeleOp extends OpMode
             robot.drivetrain.setSpeed(1);
         }
 
-        if(gamepad1.b) {
-            robot.setIntakePower(1);
-        }
-        else if(gamepad1.x) {
-            robot.setIntakePower(-1);
-        }
-        else {
-            robot.setIntakePower(0);
-        }
+//        if(gamepad1.b) {
+//            robot.setIntakePower(1);
+//        }
+//        else if(gamepad1.x) {
+//            robot.setIntakePower(-1);
+//        }
+//        else {
+//            robot.setIntakePower(0);
+//        }
 
         // Show the elapsed game time and drive encoders
         robot.drivetrain.reportEncoders(telemetry);

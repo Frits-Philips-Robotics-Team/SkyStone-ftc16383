@@ -19,7 +19,7 @@ public class FritsBot {
     public SideGrabber sideGrabber = new SideGrabber();
     public LiftGrab liftGrab = new LiftGrab();
     public FoundationServo foundationServo = new FoundationServo();
-    private Intake fritsIntake = new Intake();
+    public Intake intake = new Intake();
     private BNO055IMU imu;
 
     private ElapsedTime rotateTimer = new ElapsedTime();
@@ -35,9 +35,9 @@ public class FritsBot {
         drivetrain.init(hwMap);
         //servoTest.init(hwMap);
 //        sideGrabber.init(hwMap);
-//        liftGrab.init(hwMap);
+        liftGrab.init(hwMap);
 //        foundationServo.init(hwMap);
-//        fritsIntake.init(hwMap);
+        intake.init(hwMap);
         imu = hwMap.get(BNO055IMU.class, "imu");
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         imu.initialize(parameters);
@@ -111,8 +111,7 @@ public class FritsBot {
 
         double diagonalRightCM = autonDrive.getX();
         double diagonalLeftCM = autonDrive.getY();
-
-        drivetrain.encoderDrive(speed, diagonalLeftCM, diagonalRightCM, timeoutS);
+        drivetrain.encoderDrive(speed, diagonalRightCM, diagonalLeftCM, timeoutS);
     }
 
     // rotate relative to rotation setpoint
@@ -122,7 +121,7 @@ public class FritsBot {
 
         double kP = 0.8;
         double kI = 0;
-        double kD = 0.5;
+        double kD = 0.4;
         long dt = 20;
         double integral = 0;
         double derivative = 0;
@@ -157,10 +156,6 @@ public class FritsBot {
 
     public void resetDriveAngle() {
         holdAngleOffset = getHeadingRadians();
-    }
-
-    public void setIntakePower(double power) {
-        fritsIntake.setIntakePower(power);
     }
 
     private double getHeadingRadians() {

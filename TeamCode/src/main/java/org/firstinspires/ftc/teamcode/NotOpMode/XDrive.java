@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode.NotOpMode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
@@ -21,7 +20,7 @@ public class XDrive {
     private ElapsedTime cycleTime = new ElapsedTime();
     private ElapsedTime autonTime = new ElapsedTime();
 
-    private static final int CYCLE_MS = 40;
+    private static final int CYCLE_MS = 25;
     private double maxSpeed;
     private double increment;
 
@@ -52,7 +51,7 @@ public class XDrive {
         frDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         maxSpeed = 1;
-        increment = 0.06;
+        increment = 0.09;
         flPowerCurrent = 0;
         rlPowerCurrent = 0;
         rrPowerCurrent = 0;
@@ -64,7 +63,7 @@ public class XDrive {
         this.opmode = opmode;
     }
 
-    public void reportEncoders(Telemetry telemetry) {
+    public void reportEncoders(@org.jetbrains.annotations.NotNull Telemetry telemetry) {
         telemetry.addData("encoders", "%d, %d, %d, %d",
                 flDrive.getCurrentPosition(),
                 rlDrive.getCurrentPosition(),
@@ -179,12 +178,23 @@ public class XDrive {
         rrDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         frDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
+        double diagonalLeftSpeed;
+        double diagonalRightSpeed;
+        if (Math.abs(diagonalLeftCM / diagonalRightCM) < 1) {
+            diagonalLeftSpeed = (diagonalLeftCM / diagonalRightCM) * speed;
+            diagonalRightSpeed = speed;
+        }
+        else {
+            diagonalLeftSpeed = speed;
+            diagonalRightSpeed = (diagonalRightCM / diagonalLeftCM) * speed;
+        }
+
         // reset the timeout time and start motion.
         autonTime.reset();
-        flDrive.setPower(Math.abs(speed));
-        rlDrive.setPower(Math.abs(speed));
-        rrDrive.setPower(Math.abs(speed));
-        frDrive.setPower(Math.abs(speed));
+        flDrive.setPower(Math.abs(diagonalRightSpeed));
+        rlDrive.setPower(Math.abs(diagonalLeftSpeed));
+        rrDrive.setPower(Math.abs(diagonalRightSpeed));
+        frDrive.setPower(Math.abs(diagonalLeftSpeed));
 
         while(opmode.opModeIsActive() && (autonTime.seconds() < TimeoutS) && (flDrive.isBusy() || rlDrive.isBusy() || rrDrive.isBusy())) {
             // wait until motors are done
