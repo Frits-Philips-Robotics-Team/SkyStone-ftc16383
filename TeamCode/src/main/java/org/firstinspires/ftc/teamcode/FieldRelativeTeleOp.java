@@ -33,6 +33,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.NotOpMode.FritsBot;
 
@@ -68,7 +69,8 @@ public class FieldRelativeTeleOp extends OpMode
     // Code to run REPEATEDLY after the driver hits PLAY but before they hit STOP
     @Override
     public void loop() {
-        robot.driveHoldAngle(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
+        double speed = 0.3 + Range.scale(gamepad1.right_trigger, 0, 1, 0, 0.7);
+        robot.driveHoldAngle(speed * -gamepad1.left_stick_y, speed * gamepad1.left_stick_x, speed *  gamepad1.right_stick_x);
 
         if(gamepad1.right_bumper) {
             robot.resetDriveAngle();
@@ -84,46 +86,48 @@ public class FieldRelativeTeleOp extends OpMode
         }
 
         if(gamepad2.b) {
-            robot.setIntakePower(1);
+            robot.intake.setPower(1);
         }
         else if(gamepad2.x) {
-            robot.setIntakePower(-1);
+            robot.intake.setPower(-1);
         }
         else {
-            robot.setIntakePower(0);
+            robot.intake.setPower(0);
         }
+//
+//        if(gamepad1.dpad_left) {
+//            robot.foundationServo.moveUp(false);
+//        }
+//        else if(gamepad1.dpad_right
+//        ) {
+//            robot.foundationServo.moveUp(true);
+//        }
+//
+//        if(gamepad2.dpad_up) {
+//            robot.liftGrab.moveGrabber("out", "");
+//        }
+//        else if(gamepad2.dpad_down) {
+//            robot.liftGrab.moveGrabber("in", "");
+//        }
+//
+//        if(gamepad2.dpad_left) {
+//            robot.liftGrab.moveGrabber("", "open");
+//        }
+//        else if(gamepad2.dpad_right) {
+//            robot.liftGrab.moveGrabber("", "closed");
+//        }
+//
+//        if(gamepad2.left_bumper) {
+//            robot.sideGrabber.moveGrabber("upEmpty", "initial");
+//        }
+//        else if(gamepad2.right_bumper) {
+//            robot.sideGrabber.moveGrabber("down", "");
+//        }
 
-        if(gamepad1.dpad_left) {
-            robot.foundationServo.moveUp(false);
-        }
-        else if(gamepad1.dpad_right
-        ) {
-            robot.foundationServo.moveUp(true);
-        }
-
-        if(gamepad2.dpad_up) {
-            robot.liftGrab.moveGrabber("out", "");
-        }
-        else if(gamepad2.dpad_down) {
-            robot.liftGrab.moveGrabber("in", "");
-        }
-
-        if(gamepad2.dpad_left) {
-            robot.liftGrab.moveGrabber("", "open");
-        }
-        else if(gamepad2.dpad_right) {
-            robot.liftGrab.moveGrabber("", "closed");
-        }
-
-        if(gamepad2.left_bumper) {
-            robot.sideGrabber.moveGrabber("upEmpty", "initial");
-        }
-        else if(gamepad2.right_bumper) {
-            robot.sideGrabber.moveGrabber("down", "");
-        }
-
-        // Show the elapsed game time
-        telemetry.addData("Status", "Run Time: " + runtime.toString());
+        // Show telemetry
+        //telemetry.addData("Status", "Run Time: " + runtime.toString());
+        robot.drivetrain.reportSpeeds(telemetry);
+        robot.drivetrain.reportEncoders(telemetry);
     }
 
     // Code to run ONCE after the driver hits STOP
