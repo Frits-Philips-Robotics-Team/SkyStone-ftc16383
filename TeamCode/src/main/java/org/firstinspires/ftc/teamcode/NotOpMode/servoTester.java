@@ -17,8 +17,8 @@ public class servoTester {
     private double angleTwo;
 
     public void init(HardwareMap hwMap) {
-        servo_one = hwMap.get(Servo.class, "left_servo");
-        servo_two = hwMap.get(Servo.class, "right_servo");
+        servo_one = hwMap.get(Servo.class, "left_foundation");
+        servo_two = hwMap.get(Servo.class, "right_foundation");
 
         angleOne = 0.5;
         angleTwo = 0.5;

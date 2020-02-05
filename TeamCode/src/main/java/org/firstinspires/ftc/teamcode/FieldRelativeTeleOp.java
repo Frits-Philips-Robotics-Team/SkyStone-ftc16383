@@ -78,6 +78,8 @@ public class FieldRelativeTeleOp extends OpMode
 
         robot.liftGrab.setLiftPower(-gamepad2.left_stick_y);
 
+        robot.liftGrab.slideArm(gamepad2.right_stick_x);
+
         if(gamepad1.a) {
             robot.drivetrain.setSpeed(0.75);
         }
@@ -94,29 +96,29 @@ public class FieldRelativeTeleOp extends OpMode
         else {
             robot.intake.setPower(0);
         }
-//
-//        if(gamepad1.dpad_left) {
-//            robot.foundationServo.moveUp(false);
-//        }
-//        else if(gamepad1.dpad_right
-//        ) {
-//            robot.foundationServo.moveUp(true);
-//        }
-//
+
+        if(gamepad1.dpad_left) {
+            robot.foundationServo.moveUp(false);
+        }
+        else if(gamepad1.dpad_right
+        ) {
+            robot.foundationServo.moveUp(true);
+        }
+
 //        if(gamepad2.dpad_up) {
 //            robot.liftGrab.moveGrabber("out", "");
 //        }
 //        else if(gamepad2.dpad_down) {
 //            robot.liftGrab.moveGrabber("in", "");
 //        }
-//
-//        if(gamepad2.dpad_left) {
-//            robot.liftGrab.moveGrabber("", "open");
-//        }
-//        else if(gamepad2.dpad_right) {
-//            robot.liftGrab.moveGrabber("", "closed");
-//        }
-//
+
+        if(gamepad2.dpad_left) {
+            robot.liftGrab.moveGrabber("", "open");
+        }
+        else if(gamepad2.dpad_right) {
+            robot.liftGrab.moveGrabber("", "closed");
+        }
+
 //        if(gamepad2.left_bumper) {
 //            robot.sideGrabber.moveGrabber("upEmpty", "initial");
 //        }
