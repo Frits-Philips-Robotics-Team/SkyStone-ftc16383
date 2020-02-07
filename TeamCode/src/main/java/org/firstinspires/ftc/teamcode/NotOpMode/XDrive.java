@@ -13,10 +13,10 @@ import static java.lang.Thread.sleep;
 
 public class XDrive {
 
-    private DcMotor flDrive;
-    private DcMotor rlDrive;
-    private DcMotor rrDrive;
-    private DcMotor frDrive;
+    DcMotor flDrive;
+    DcMotor rlDrive;
+    DcMotor rrDrive;
+    DcMotor frDrive;
     private ElapsedTime cycleTime = new ElapsedTime();
     private ElapsedTime autonTime = new ElapsedTime();
 
@@ -151,66 +151,6 @@ public class XDrive {
 
     public void setSpeed(double value) {
         maxSpeed = value;
-    }
-
-    public void encoderDrive(double speed, double diagonalRightCM, double diagonalLeftCM, double TimeoutS) {
-
-        final double COUNTS_PER_CM = 19.8059; // (1120 / 2) / (9 * 3.1415)
-
-        int newFlTarget;
-        int newRlTarget;
-        int newRrTarget;
-        int newFrTarget;
-
-        // Determine new target position, and pass to motor controller
-        newFlTarget = flDrive.getCurrentPosition() - (int) (diagonalRightCM * COUNTS_PER_CM);
-        newRlTarget = rlDrive.getCurrentPosition() - (int) (diagonalLeftCM * COUNTS_PER_CM);
-        newRrTarget = rlDrive.getCurrentPosition() - (int) (diagonalRightCM * COUNTS_PER_CM);
-        newFrTarget = rlDrive.getCurrentPosition() - (int) (diagonalLeftCM * COUNTS_PER_CM);
-        flDrive.setTargetPosition(newFlTarget);
-        rlDrive.setTargetPosition(newRlTarget);
-        rrDrive.setTargetPosition(newRrTarget);
-        frDrive.setTargetPosition(newFrTarget);
-
-        // Turn On RUN_TO_POSITION
-        flDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rlDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rrDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        frDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-        double diagonalLeftSpeed;
-        double diagonalRightSpeed;
-        if (Math.abs(diagonalLeftCM / diagonalRightCM) < 1) {
-            diagonalLeftSpeed = (diagonalLeftCM / diagonalRightCM) * speed;
-            diagonalRightSpeed = speed;
-        }
-        else {
-            diagonalLeftSpeed = speed;
-            diagonalRightSpeed = (diagonalRightCM / diagonalLeftCM) * speed;
-        }
-
-        // reset the timeout time and start motion.
-        autonTime.reset();
-        flDrive.setPower(Math.abs(diagonalRightSpeed));
-        rlDrive.setPower(Math.abs(diagonalLeftSpeed));
-        rrDrive.setPower(Math.abs(diagonalRightSpeed));
-        frDrive.setPower(Math.abs(diagonalLeftSpeed));
-
-        while(opmode.opModeIsActive() && (autonTime.seconds() < TimeoutS) && (flDrive.isBusy() || rlDrive.isBusy() || rrDrive.isBusy())) {
-            // wait until motors are done
-        }
-
-        // Stop all motion;
-        flDrive.setPower(0);
-        rlDrive.setPower(0);
-        rrDrive.setPower(0);
-        frDrive.setPower(0);
-
-        // Turn off RUN_TO_POSITION
-        flDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rlDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rrDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        frDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public void reportSpeeds(Telemetry telemetry) {

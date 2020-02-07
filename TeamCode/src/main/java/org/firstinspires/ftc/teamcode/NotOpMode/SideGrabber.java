@@ -18,6 +18,7 @@ public class SideGrabber {
         rightGripper = hwMap.get(Servo.class, "right_grabber_gripper");
 
         moveLeftGrabber("upEmpty", "initial");
+        moveRightGrabber("upEmpty", "initial");
     }
 
     /*

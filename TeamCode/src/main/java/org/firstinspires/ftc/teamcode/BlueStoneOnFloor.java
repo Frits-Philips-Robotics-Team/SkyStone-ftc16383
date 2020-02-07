@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.NotOpMode.FritsBot;
@@ -24,9 +23,9 @@ import java.util.List;
 //import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 
-@Autonomous(name= "AutonRedDetect", group="red")
+@Autonomous(name= "BlueStoneOnFloor", group="blue")
 //@Disabled//comment out this line before using
-public class AutonRedDetect extends LinearOpMode {
+public class BlueStoneOnFloor extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
 
 
@@ -39,11 +38,11 @@ public class AutonRedDetect extends LinearOpMode {
     private static float rectWidth = 1.5f/8f;
 
     private static float offsetX = 0f/8f;//changing this moves the three rects and the three circles left or right, range : (-2, 2) not inclusive
-    private static float offsetY = 0f/8f;//changing this moves the three rects and circles up or down, range: (-4, 4) not inclusive
+    private static float offsetY = 1f/8f;//changing this moves the three rects and circles up or down, range: (-4, 4) not inclusive
 
-    private static float[] midPos = {4f/8f+offsetX, 4f/8f+offsetY};//0 = col, 1 = row
+    private static float[] midPos = {3.8f/8f+offsetX, 4f/8f+offsetY};//0 = col, 1 = row
     private static float[] leftPos = {2f/8f+offsetX, 4f/8f+offsetY};
-    private static float[] rightPos = {6f/8f+offsetX, 4f/8f+offsetY};
+    private static float[] rightPos = {5.6f/8f+offsetX, 4f/8f+offsetY};
     //moves all rectangles right or left by amount. units are in ratio to monitor
 
     private final int rows = 640;
@@ -60,7 +59,7 @@ public class AutonRedDetect extends LinearOpMode {
         phoneCam = OpenCvCameraFactory.getInstance().createInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
         phoneCam.openCameraDevice();//open camera
         phoneCam.setPipeline(new StageSwitchingPipeline());//different stages
-        phoneCam.startStreaming(rows, cols, OpenCvCameraRotation.UPRIGHT);//display on RC
+        phoneCam.startStreaming(rows, cols, OpenCvCameraRotation.SIDEWAYS_LEFT);//display on RC
         //width, height
         //width = height if camera is in portrait mode
 
@@ -69,20 +68,82 @@ public class AutonRedDetect extends LinearOpMode {
 
         waitForStart();
         runtime.reset();
-        telemetry.addData("Values", valLeft+"   "+valMid+"   "+valRight);
+
+        telemetry.addData("Values", valLeft + "   " + valMid + "   " + valRight);
         telemetry.addData("Height", rows);
         telemetry.addData("Width", cols);
-
         telemetry.update();
-
         if (valLeft == 0) { // skystone is in position 1 and 4
-
+            robot.driveToPoint(0.8, 70, 5, 0, 2);
+            robot.sideGrabber.moveRightGrabber("upEmpty", "open");
+            sleep(400);
+            robot.sideGrabber.moveRightGrabber("down", "open");
+            sleep(400);
+            robot.sideGrabber.moveRightGrabber("down", "closed");
+            sleep(400);
+            robot.sideGrabber.moveRightGrabber("upBlock", "closed");
+            sleep(500);
+            robot.driveToPoint(0.8, -26, 0, 0, 1);
+            robot.driveToPoint(0.8, -10, -210, 0, 3);
+            robot.rotateAbsolute(1, 0, 2);
+            robot.driveToPoint(0.8, 28, 0, 0, 2);
+            robot.sideGrabber.moveRightGrabber("down", "open");
+            sleep(300);
+            robot.sideGrabber.moveRightGrabber("upEmpty", "open");
+            robot.driveToPoint(0.8, -30, 0, 0, 1);
+            robot.sideGrabber.moveRightGrabber("upEmpty", "closed");
+            robot.rotateAbsolute(1, 0, 1);
+            robot.driveToPoint(0.8, 10, 120, 0, 2);
+            robot.rotateAbsolute(1, 0, 1);
+            robot.driveToPoint(0.7, 20, 0, 0, 1);
         }
         else if (valMid == 0) { // skystone is in position 2 and 5
-
+            robot.driveToPoint(0.8, 70, -20, 0, 2);
+            //robot.rotateAbsolute(1, 0, 2, telemetry);
+            robot.sideGrabber.moveRightGrabber("upEmpty", "open");
+            sleep(400);
+            robot.sideGrabber.moveRightGrabber("down", "open");
+            sleep(400);
+            robot.sideGrabber.moveRightGrabber("down", "closed");
+            sleep(400);
+            robot.sideGrabber.moveRightGrabber("upBlock", "closed");
+            sleep(500);
+            robot.driveToPoint(0.8, -26, 0, 0, 1);
+            robot.driveToPoint(0.8, -10, -190, 0, 3);
+            robot.rotateAbsolute(1, 0, 2);
+            robot.driveToPoint(0.8, 28, 0, 0, 2);
+            robot.sideGrabber.moveRightGrabber("down", "open");
+            sleep(300);
+            robot.sideGrabber.moveRightGrabber("upEmpty", "open");
+            robot.driveToPoint(0.8, -30, 0, 0, 1);
+            robot.sideGrabber.moveRightGrabber("upEmpty", "closed");
+            robot.driveToPoint(0.8, 0, 100, 0, 2);
+            robot.rotateAbsolute(1, 0, 1);
+            robot.driveToPoint(0.7, 20, 0, 0, 1);
         }
         else { // skystone is in position 3 and 6
-
+            robot.driveToPoint(0.8, 70, -45, 0, 2);
+            //robot.rotateAbsolute(1, 0, 2, telemetry);
+            robot.sideGrabber.moveRightGrabber("upEmpty", "open");
+            sleep(400);
+            robot.sideGrabber.moveRightGrabber("down", "open");
+            sleep(400);
+            robot.sideGrabber.moveRightGrabber("down", "closed");
+            sleep(400);
+            robot.sideGrabber.moveRightGrabber("upBlock", "closed");
+            sleep(500);
+            robot.driveToPoint(0.8, -26, 0, 0, 1);
+            robot.driveToPoint(0.8, -10, -165, 0, 3);
+            robot.rotateAbsolute(1, 0, 2);
+            robot.driveToPoint(0.8, 28, 0, 0, 2);
+            robot.sideGrabber.moveRightGrabber("down", "open");
+            sleep(300);
+            robot.sideGrabber.moveRightGrabber("upEmpty", "open");
+            robot.driveToPoint(0.8, -30, 0, 0, 1);
+            robot.sideGrabber.moveRightGrabber("upEmpty", "closed");
+            robot.driveToPoint(0.8, 0, 100, 0, 2);
+            robot.rotateAbsolute(1, 0, 1);
+            robot.driveToPoint(0.7, 20, 0, 0, 1);
         }
     }
 

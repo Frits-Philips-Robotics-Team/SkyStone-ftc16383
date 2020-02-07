@@ -18,8 +18,7 @@ public class AutonFunStuff extends LinearOpMode {
         robot.initAutonomous(this);
 
         waitForStart();
-        robot.driveToPoint(0.3, 10, 10, 3);
-        robot.rotateAbsolute(1, 180, 30, telemetry);
+        robot.rotateAbsolute(1, -90, 10);
     }
 
 }
