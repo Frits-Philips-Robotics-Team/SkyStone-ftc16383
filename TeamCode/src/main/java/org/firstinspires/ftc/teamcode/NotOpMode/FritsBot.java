@@ -24,7 +24,6 @@ public class FritsBot {
     public FoundationServo foundationServo = new FoundationServo();
     public Intake intake = new Intake();
     private BNO055IMU imu;
-    public DistanceSensor rightDistance;
 
     private ElapsedTime rotateTimer = new ElapsedTime();
     private ElapsedTime autonTime = new ElapsedTime();
@@ -46,9 +45,6 @@ public class FritsBot {
         imu = hwMap.get(BNO055IMU.class, "imu");
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         imu.initialize(parameters);
-
-        rightDistance = hwMap.get(DistanceSensor.class, "right_distance");
-        Rev2mDistanceSensor sensorTimeOfFlight = (Rev2mDistanceSensor)rightDistance;
 
         wasRotating = false;
         rotationSetpoint = getHeadingRadians();

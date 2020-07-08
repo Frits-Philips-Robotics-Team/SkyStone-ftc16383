@@ -105,13 +105,6 @@ public class FieldRelativeTeleOp extends OpMode
             robot.foundationServo.moveUp(true);
         }
 
-//        if(gamepad2.dpad_up) {
-//            robot.liftGrab.moveGrabber("out", "");
-//        }
-//        else if(gamepad2.dpad_down) {
-//            robot.liftGrab.moveGrabber("in", "");
-//        }
-
         if(gamepad2.dpad_left) {
             robot.liftGrab.moveGrabber("", "open");
         }
@@ -119,12 +112,22 @@ public class FieldRelativeTeleOp extends OpMode
             robot.liftGrab.moveGrabber("", "closed");
         }
 
-//        if(gamepad2.left_bumper) {
-//            robot.sideGrabber.moveGrabber("upEmpty", "initial");
-//        }
-//        else if(gamepad2.right_bumper) {
-//            robot.sideGrabber.moveGrabber("down", "");
-//        }
+        if(gamepad2.dpad_up) {
+            robot.sideGrabber.moveRightGrabber("upBlock", "");
+        }
+        else if (gamepad2.dpad_down) {
+            robot.sideGrabber.moveRightGrabber("down", "");
+        }
+        else if (gamepad2.right_bumper) {
+            robot.sideGrabber.moveRightGrabber("upEmpty", "initial");
+        }
+
+        if (gamepad2.a) {
+            robot.sideGrabber.moveRightGrabber("", "closed");
+        }
+        else if (gamepad2.y) {
+            robot.sideGrabber.moveRightGrabber("", "open");
+        }
 
         // Show telemetry
         //telemetry.addData("Status", "Run Time: " + runtime.toString());

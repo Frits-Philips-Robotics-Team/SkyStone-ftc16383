@@ -54,7 +54,7 @@ public class LiftGrab {
         // max_closed = 0.11
         // closed_block = 0.15
         // open_normal = 0.25
-        final double openValue = 0.25;
+        final double openValue = 0.28; // was eerst 0.25
         final double closedValue = 0.15;
 
         switch (armPos) {

@@ -36,7 +36,7 @@
 //
 //
 //@Autonomous(name="DriveForward", group="simple")
-//public class AutonDriveForward extends LinearOpMode {
+//public class AutonDriveLeftBack extends LinearOpMode {
 //
 //    private FritsBot robot = new FritsBot();
 //
